@@ -13,82 +13,104 @@ DSEG		SEGMENT
 ;// Touches de clavier
 ; --------------------------
 
-_RIGHT_ EQU 4dh		; Flèche DROITE
-_DOWN_  EQU 50h		; Flèche BAS
-_UP_    EQU 48h		; Flèche HAUT
-_LEFT_  EQU 4bh		; Flèche GAUCHE
-_Kesc_  EQU 01h		; ESCAPE
-_Kent_  EQU 1ch		; ENTER
+	_RIGHT_ EQU 4dh		; Flèche DROITE
+	_DOWN_  EQU 50h		; Flèche BAS
+	_UP_    EQU 48h		; Flèche HAUT
+	_LEFT_  EQU 4bh		; Flèche GAUCHE
+	_KZ_	EQU	2ch		; Z
+	_KQ_	EQU	10h		; Q
+	_KS_	EQU	1fh		; S
+	_KD_	EQU	20h		; D
+	_Kent_  EQU 1ch		; ENTER
+	_Kspce_	EQU	39h		; SPACE
+	_KH_	EQU	23h		; H
+	_Kesc_  EQU 01h		; ESCAPE
 
 ; --------------------------
 ; Couleurs
 ; --------------------------
 
-_BLACK_		EQU 00h
-_LGRAY_		EQU 07h
-_GRAY_		EQU 08h
-_WHITE_		EQU 0Fh
-_DBLUE_		EQU 68h
-_BLUE_		EQU 37h
-_LBLUE_		EQU 35h
-_GREEN_		EQU 77h
-_LGREEN_	EQU 02h
-_CYAN_		EQU 03h
-_RED_		EQU 04h
-_MAGENTA_	EQU 05h
-_BROWN_		EQU 06h
-_DGRAY_		EQU 12h
-_LCYAN_		EQU 0Bh
-_LRED_		EQU 0Ch
-_LMAGENTA_	EQU 0Dh
-_DPURPLE_	EQU 6Bh
-_PURPLE_	EQU 6Ch
-_LPURPLE_	EQU 24h
-_PINK_		EQU 41h
-_DPINK_		EQU	40h
-_ORANGE_	EQU 2Ah
-_LORANGE_	EQU	2Bh
-_YELLOW_	EQU 0Eh
+	_BLACK_		EQU 00h
+	_LGRAY_		EQU 07h
+	_GRAY_		EQU 08h
+	_WHITE_		EQU 0Fh
+	_DBLUE_		EQU 68h
+	_BLUE_		EQU 37h
+	_LBLUE_		EQU 35h
+	_GREEN_		EQU 77h
+	_LGREEN_	EQU 02h
+	_CYAN_		EQU 03h
+	_RED_		EQU 04h
+	_MAGENTA_	EQU 05h
+	_BROWN_		EQU 06h
+	_DGRAY_		EQU 12h
+	_LCYAN_		EQU 0Bh
+	_LRED_		EQU 0Ch
+	_LMAGENTA_	EQU 0Dh
+	_DPURPLE_	EQU 6Bh
+	_PURPLE_	EQU 6Ch
+	_LPURPLE_	EQU 24h
+	_PINK_		EQU 41h
+	_DPINK_		EQU	40h
+	_ORANGE_	EQU 2Ah
+	_LORANGE_	EQU	2Bh
+	_YELLOW_	EQU 0Eh
 
 ; --------------------------
 ; Variables
 ; --------------------------
-				; x, y, nbmove
-PLAYER		DW	152, 96, 0
+					; x, y, nbmove
+	PLAYER		DW	152, 96, 0
 
-			; 	x, 		y, boolean sick,   coordmax right, 	left, 	top, 	bottom
-Homer		DW	72, 	40, 		0,				96,		8,		16,		48
-Marge		DW	200, 	80, 		0,				208,	160,	16,		88
-Bart		DW	288, 	128, 		0,				304,	216,	104,	136
-Lisa		DW	240, 	40, 		0,				304,	216,	16,		48
-Maggie		DW	112, 	80, 		0,				152,	104,	16,		88
-Barney		DW	24, 	64, 		0,				96,		8,		56,		88
-Flanders	DW	200, 	112, 		0,				208,	160,	104,	176
-Apu			DW	24, 	128, 		0,				96,		8,		104,	136
-PetitPapaNoel	DW	112, 112, 		0,				152,	104,	104,	176
-BouleDeNeige	DW	240, 152, 		0,				304,	216,	144,	176
-Krusty		DW	288, 	64, 		0,				304,	216,	56,		88
-TahitiBob	DW	72, 	152, 		0,				96,		8,		144,	176
+				; 	x, 		y, boolean sick,   coordmax right, 	left, 	top, 	bottom
+	Homer		DW	72, 	40, 		0,				96,		8,		16,		48
+	Marge		DW	200, 	80, 		0,				208,	160,	16,		88
+	Bart		DW	288, 	128, 		0,				304,	216,	104,	136
+	Lisa		DW	240, 	40, 		0,				304,	216,	16,		48
+	Maggie		DW	112, 	80, 		0,				152,	104,	16,		88
+	Barney		DW	24, 	64, 		0,				96,		8,		56,		88
+	Flanders	DW	200, 	112, 		0,				208,	160,	104,	176
+	Apu			DW	24, 	128, 		0,				96,		8,		104,	136
+	PetitPapaNoel	DW	112, 112, 		0,				152,	104,	104,	176
+	BouleDeNeige	DW	240, 152, 		0,				304,	216,	144,	176
+	Krusty		DW	288, 	64, 		0,				304,	216,	56,		88
+	TahitiBob	DW	72, 	152, 		0,				96,		8,		144,	176
 
-RECORDMOVE	DW	0
-MOVSIM		DW	0
+	RECORDMOVE	DW	0
+	MOVSIM		DW	0
 
 ; --------------------------
 ; Texts
 ; --------------------------
 
-S_MENU1		DB	"Spread the virus to the SIMPSONS !", 24h
-S_MENU2		DB	"Press Enter to play", 24H
-S_ESCAPE	DB	"Press Escape to leave", 24h
+	; all
+	S_ESCAPE	DB	"Press Escape to leave", 24h
 
-S_NBMOVE	DB	" moves", 13, 10, 24h
-S_RECORD	DB	"Record: ", 24h
+	; gameMenu
+	S_MENU1		DB	"Spread the virus to the SIMPSONS !", 24h
+	S_MENU2		DB	"Press Enter or Space to play", 24H
+	S_MENU3		DB	"Press H for the Help tab", 24H
 
-S_WIN1		DB "Victory in", 24h
-S_WIN2		DB "moves", 24h
-S_WINRECORD1	DB "You have set your new record !", 24h
-S_WINRECORD2	DB "You beated your old record !", 24h
-S_ENTER		DB	"Press Enter to continue", 24h
+	; helpPanel
+
+	S_HGOAL1	DB "Your goal is to touch", 24h  
+	S_HGOAL2	DB "every Simpsons !", 24h
+	S_HMOVE1	DB " ", 1eh, " ", "     Z", 24h
+	S_HMOVE2	DB 11h, 1fh, 10h, " or QSD to move", 24h
+	S_HESCAPE	DB "ESCAPE to leave", 24h
+	S_HCONFIRM	DB "SPACE or ENTER to confirm", 24h
+	S_HLEAVE	DB "Press any key to leave", 24h
+
+	; gameMain
+	S_NBMOVE	DB	" moves", 13, 10, 24h
+	S_RECORD	DB	"Record: ", 24h
+
+	; winPanel
+	S_WIN1		DB "Victory in", 24h
+	S_WIN2		DB "moves", 24h
+	S_WINRECORD1	DB "You have set your new record!", 24h
+	S_WINRECORD2	DB "You beated your old record !", 24h
+	S_ENTER		DB	"Press Enter to continue", 24h
 
 DSEG		ENDS
 ;-------------------------------------CODE SEGMENT
@@ -116,14 +138,16 @@ call SETGRAPHICS
 
 gameMenu:
 	CLEARSCREEN	_LORANGE_		; on nettoie l'écran entièrement à chaque tour
-	FILLSCREEN 1, 1, 38, 23, _BLACK_		; on remplis la zone de jeu
+	FILLSCREEN 1, 1, 38, 23, _BLACK_		; on remplis la zone visuelle
 
-	SETCURSOR 3, 7				; "Contaminez les SIMPSONS !"
-	STRINGOUT S_MENU1
+	SETCURSOR 3, 7
+	STRINGOUT S_MENU1			; "Contaminez les SIMPSONS !"
 
-	SETCURSOR 10, 15
-	STRINGOUT S_MENU2			; "Press Enter to play"
-	SETCURSOR 9, 17
+	SETCURSOR 5, 15
+	STRINGOUT S_MENU2			; "Press Enter or Space to play"
+	SETCURSOR 7, 17
+	STRINGOUT S_MENU3			; "Press H for the Help tab"
+	SETCURSOR 9, 19
 	STRINGOUT S_ESCAPE			; "Press Escape to leave"
 
 	SETCURSOR 0, 22
@@ -132,6 +156,12 @@ gameMenu:
 
 	cmp ah, _Kent_		; if key = ENTER
 	je gameReset		; on met fin au programme
+	cmp ah, _Kspce_		; if key = ENTER
+	je gameReset		; on met fin au programme
+
+	cmp ah, _KH_		; if key = H
+	je helpPanel		; on met fin au programme
+
 	cmp ah, _Kesc_		; if key = ESCAPE
 	je ENDPROG			; on met fin au programme
 
@@ -141,7 +171,28 @@ jmp gameMenu			; on retourne dans la boucle jusqu'a trouver une bonne touche
 ; helpPanel
 ; --------------------------
 helpPanel:
+	CLEARSCREEN	_LBLUE_		; on nettoie l'écran entièrement à chaque tour
+	FILLSCREEN 1, 1, 38, 23, _BLACK_		; on remplis la zone visuelle
 
+	SETCURSOR 9, 3
+	STRINGOUT S_HGOAL1		; "Your goal is to touch"
+	SETCURSOR 12, 4
+	STRINGOUT S_HGOAL2		;    "every Simpsons !"
+
+	SETCURSOR 4, 8
+	STRINGOUT S_HMOVE1		;  "Z"
+	SETCURSOR 4, 9
+	STRINGOUT S_HMOVE2		; "QSD to move"
+	SETCURSOR 4, 12
+	STRINGOUT S_HESCAPE		; "ESCAPE to leave"
+	SETCURSOR 4, 15
+	STRINGOUT S_HCONFIRM	; "SPACE or ENTER to confirm"
+
+	SETCURSOR 16, 22
+	STRINGOUT S_HLEAVE		; "Press any key to leave"
+
+	mov ah, 0		; fonction pour recuperer la touche
+	int 16h			; get key press
 jmp gameMenu
 
 ; --------------------------
@@ -212,7 +263,7 @@ gameMain:
 			add ax, Krusty+4
 			add ax, TahitiBob+4
 			cmp ax, 12				; on additionne tous les boolean
-			JE gameWin				; et on regarde si le resultat est égale au nombre de simpson
+			JE winPanel				; et on regarde si le resultat est égale au nombre de simpson
 
 			pop ax		; recuperation du registre
 
@@ -344,13 +395,25 @@ gameMain:
 		je gameMenu			; on met fin au programme
 
 		cmp ah, _RIGHT_		; if key = RIGHT
-		je movPLAYERRIGHT			; on fait le déplacement
+		je movPLAYERRIGHT		; on fait le déplacement
+		cmp ah, _KD_		; if key = D
+		je movPLAYERRIGHT		; on fait le déplacement
+
 		cmp ah, _LEFT_		; if key = LEFT
-		je movPLAYERLEFT			; on fait le déplacement
+		je movPLAYERLEFT		; on fait le déplacement
+		cmp ah, _KQ_		; if key = Q
+		je movPLAYERLEFT		; on fait le déplacement
+
 		cmp ah, _UP_		; if key = UP
 		je movPLAYERUP			; on fait le déplacement
+		cmp ah, _KZ_		; if key = Z
+		je movPLAYERUP			; on fait le déplacement
+
 		cmp ah, _DOWN_		; if key = DOWN
-		je movPLAYERDOWN			; on fait le déplacement
+		je movPLAYERDOWN		; on fait le déplacement
+		cmp ah, _KS_		; if key = S
+		je movPLAYERDOWN		; on fait le déplacement
+
 
 jmp gameMain			; on retourne dans la boucle jusqu'a trouver une bonne touche
 
@@ -390,9 +453,9 @@ jmp gameMain
 ; Ecran de victoire	
 ; --------------------------
 
-gameWin:
+winPanel:
 	CLEARSCREEN	_GREEN_		; on nettoie l'écran entièrement à chaque tour
-	FILLSCREEN 1, 1, 38, 23, _BLACK_		; on remplis la zone de jeu
+	FILLSCREEN 1, 1, 38, 23, _BLACK_		; on remplis la zone visuelle
 
 	SETCURSOR 15, 5
 	stringout S_WIN1		; "Victory in"
@@ -403,20 +466,20 @@ gameWin:
 
 	CMP RECORDMOVE, 0					; si le record vaut 0 (set de base)
 	jne CheckRecordLess
-		SETCURSOR 4, 14
+		SETCURSOR 5, 14
 		STRINGOUT S_WINRECORD1		; "You have set your new record !"
 		mov ax, PLAYER+4
 		mov RECORDMOVE, ax		; on change le record
 
 	CheckRecordLess:
 	CMPMEM PLAYER+4, RECORDMOVE		; si le nombre de deplacement est inferieur au record
-	jge gameWinContinue
+	jge winPanelContinue
 		SETCURSOR 7, 13
 		STRINGOUT S_WINRECORD2	; "You beated your old record !"
 		mov ax, PLAYER+4
 		mov RECORDMOVE, ax		; on change le record
 
-	gameWinContinue:
+	winPanelContinue:
 		SETCURSOR 8, 18
 		stringout S_ENTER		; "Press Enter to continue"
 
@@ -425,8 +488,10 @@ gameWin:
 
 		cmp ah, _Kent_		; if key = ENTER
 		je gameMenu		; on retourne au menu
+		cmp ah, _Kspce_		; if key = ESPACE
+		je gameMenu		; on retourne au menu
 
-	jmp gameWinContinue			; on retourne dans la boucle jusqu'a trouver la bonne touche
+	jmp winPanelContinue			; on retourne dans la boucle jusqu'a trouver la bonne touche
 
 ; ;retour
 	RET
