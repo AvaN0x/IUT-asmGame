@@ -79,6 +79,8 @@ DSEG		SEGMENT
 	RECORDMOVE	DW	0
 	MOVSIM		DW	0
 
+	timerMov	DB	0
+
 ; --------------------------
 ; Texts
 ; --------------------------
@@ -109,8 +111,8 @@ DSEG		SEGMENT
 	S_WIN1		DB "Victory in", 24h
 	S_WIN2		DB "moves", 24h
 	S_WINRECORD1	DB "You have set your new record!", 24h
-	S_WINRECORD2	DB "You beated your old record !", 24h
-	S_ENTER		DB "Press Enter to continue", 24h
+	S_WINRECORD2	DB "You beated your old record!", 24h
+	S_ENTER		DB "Press Enter or Space to continue", 24h
 
 DSEG		ENDS
 ;-------------------------------------CODE SEGMENT
@@ -246,26 +248,9 @@ jmp gameMain
 ; --------------------------
 
 gameMain:
-		CHECKWIN:
-			push ax		; sauvegarde du registre
+		DELAY 07fffh
 
-			mov ax, 0
-			add ax, Homer+4
-			add ax, Marge+4
-			add ax, Bart+4
-			add ax, Lisa+4
-			add ax, Maggie+4
-			add ax, Barney+4
-			add ax, Flanders+4
-			add ax, Apu+4
-			add ax, PetitPapaNoel+4
-			add ax, BouleDeNeige+4
-			add ax, Krusty+4
-			add ax, TahitiBob+4
-			cmp ax, 12				; on additionne tous les boolean
-			JE winPanel				; et on regarde si le resultat est égale au nombre de simpson
-
-			pop ax		; recuperation du registre
+		call CHECKWIN
 
 		CLEARSCREEN	_BLACK_		; on nettoie l'écran entièrement à chaque tour
 		FILLSCREEN 1, 2, 38, 22, _DGRAY_		; on remplis la zone de jeu
@@ -273,42 +258,29 @@ gameMain:
 		PRINTNUM PLAYER+4
 		stringout S_NBMOVE		; fin de la phrase
 
-		cmp RECORDMOVE, 0
-		je ENDRECORD
-			SETCURSOR 27, 0
-			stringout S_RECORD
-			SETCURSOR 35, 0
-			PRINTNUM RECORDMOVE
+		cmp RECORDMOVE, 0		; comparaison du RECORDMOVE avec 0
+		je ENDRECORD			; s'il est égale a 0, on continue le programme
+			SETCURSOR 27, 0			; sinon on affiche :
+			stringout S_RECORD		; "Record:"
+			SETCURSOR 35, 0			;
+			PRINTNUM RECORDMOVE		; RECORDMOVE
 
 		ENDRECORD:
 
 		SETCURSOR 18, 24
 		stringout S_ESCAPE		; Press Escape to leave
 
-		call movSimpsons
+		inc timerMov			; on incrémente le timerMov
+		cmp timerMov, 5			; si c'est égale à 5
+		jne afterIncTimerMov		; sinon on continue la suite
+			mov timerMov, 0		; on remets la valeur a 0
+			call movSimpsons	; et on change la position des simpsons
+
+		afterIncTimerMov:
 		
-		CHECKWIN:
-			push ax		; sauvegarde du registre
+		call CHECKWIN
 
-			mov ax, 0
-			add ax, Homer+4
-			add ax, Marge+4
-			add ax, Bart+4
-			add ax, Lisa+4
-			add ax, Maggie+4
-			add ax, Barney+4
-			add ax, Flanders+4
-			add ax, Apu+4
-			add ax, PetitPapaNoel+4
-			add ax, BouleDeNeige+4
-			add ax, Krusty+4
-			add ax, TahitiBob+4
-			cmp ax, 12				; on additionne tous les boolean
-			JE winPanel				; et on regarde si le resultat est égale au nombre de simpson
-
-			pop ax		; recuperation du registre
-
-
+		; dessin des simpsons
 		HomerCheckSick:				; verification de l'état d'Homer
 			cmp Homer+4, 1							; si boolean = vrai
 			JE HomerSick							; jump sur HomerSick
@@ -406,12 +378,16 @@ gameMain:
 			DrawTahitiBob		_LGREEN_, _GREEN_
 
 		ENDCheckSick:
+
 		call DrawPLAYER
+
+
+		mov ah, 01h		; fonction pour verifier si une touche est enfoncée
+		int 16h			; get key press
+		jz gameMain			; s'il n'y a aucune touche, on relance la boucle
 
 		mov ah, 0		; fonction pour recuperer la touche
 		int 16h			; get key press
-
-		
 		cmp ah, _Kesc_		; if key = ESCAPE
 		je gameMenu			; on met fin au programme
 
@@ -495,14 +471,14 @@ winPanel:
 	CheckRecordLess:
 	CMPMEM PLAYER+4, RECORDMOVE		; si le nombre de deplacement est inferieur au record
 	jge winPanelContinue
-		SETCURSOR 7, 13
-		STRINGOUT S_WINRECORD2	; "You beated your old record !"
+		SETCURSOR 6, 13
+		STRINGOUT S_WINRECORD2	; "You beated your old record!"
 		mov ax, PLAYER+4
 		mov RECORDMOVE, ax		; on change le record
 
 	winPanelContinue:
-		SETCURSOR 8, 18
-		stringout S_ENTER		; "Press Enter to continue"
+		SETCURSOR 4, 22
+		stringout S_ENTER		; "Press Enter or Space to continue"
 
 		mov ah, 0		; fonction pour recuperer la touche
 		int 16h			; get key press

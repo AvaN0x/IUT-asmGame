@@ -1,99 +1,156 @@
+simpsonsound:
+	SOUND 2280, 1	;	C	523.25hz
+	SOUND 2031, 1	;	D	587.33hz
+
+ret
+
 CheckCase:      ; label pour verifier si le joueur se trouve a la position d'un simpson
 		CheckCaseHomer:				; verification si la case est celle d'Homer
 			CMPMEM PLAYER, Homer		; verification de la coordonnée X
 			JNE CheckCaseMarge			; si non égale, on regarde si la case est celle du suivant
 			CMPMEM PLAYER+2, Homer+2	; verification de la coordonnée Y
 			JNE CheckCaseMarge			; si non égale, on regarde si la case est celle du suivant
+			cmp Homer+4, 1				; si la case est deja à 1, on continue
+			JE CheckCaseMarge			; si égale, on regarde si la case est celle du suivant
 			mov Homer+4, 1				; on passe l'état à malade
+			call simpsonsound
  
 		CheckCaseMarge:				; verification si la case est celle de Marge
 			CMPMEM PLAYER, Marge		; verification de la coordonnée X
 			JNE CheckCaseBart			; si non égale, on regarde si la case est celle du suivant
 			CMPMEM PLAYER+2, Marge+2	; verification de la coordonnée Y
 			JNE CheckCaseBart			; si non égale, on regarde si la case est celle du suivant
+			cmp Marge+4, 1				; si la case est deja à 1, on continue
+			JE CheckCaseBart			; si égale, on regarde si la case est celle du suivant
 			mov Marge+4, 1				; on passe l'état à malade
+			call simpsonsound
+
 
 		CheckCaseBart:				; verification si la case est celle de Bart
 			CMPMEM PLAYER, Bart			; verification de la coordonnée X
 			JNE CheckCaseLisa			; si non égale, on regarde si la case est celle du suivant
 			CMPMEM PLAYER+2, Bart+2		; verification de la coordonnée Y
 			JNE CheckCaseLisa			; si non égale, on regarde si la case est celle du suivant
+			cmp Bart+4, 1				; si la case est deja à 1, on continue
+			JE CheckCaseLisa			; si égale, on regarde si la case est celle du suivant
 			mov Bart+4, 1				; on passe l'état à malade
+			call simpsonsound
+
 
 		CheckCaseLisa:				; verification si la case est celle de Lisa
 			CMPMEM PLAYER, Lisa			; verification de la coordonnée X
 			JNE CheckCaseMaggie			; si non égale, on regarde si la case est celle du suivant
 			CMPMEM PLAYER+2, Lisa+2		; verification de la coordonnée Y
 			JNE CheckCaseMaggie			; si non égale, on regarde si la case est celle du suivant
+			cmp Lisa+4, 1				; si la case est deja à 1, on continue
+			JE CheckCaseMaggie			; si égale, on regarde si la case est celle du suivant
 			mov Lisa+4, 1				; on passe l'état à malade
+			call simpsonsound
+
 
 		CheckCaseMaggie:			; verification si la case est celle de Maggie
 			CMPMEM PLAYER, Maggie		; verification de la coordonnée X
 			JNE CheckCaseBarney			; si non égale, on regarde si la case est celle du suivant
 			CMPMEM PLAYER+2, Maggie+2	; verification de la coordonnée Y
 			JNE CheckCaseBarney			; si non égale, on regarde si la case est celle du suivant
+			cmp Maggie+4, 1				; si la case est deja à 1, on continue
+			JE CheckCaseBarney			; si égale, on regarde si la case est celle du suivant
 			mov Maggie+4, 1				; on passe l'état à malade
+			call simpsonsound
+
 
 		CheckCaseBarney:			; verification si la case est celle de Barney
 			CMPMEM PLAYER, Barney		; verification de la coordonnée X
 			JNE CheckCaseFlanders		; si non égale, on regarde si la case est celle du suivant
 			CMPMEM PLAYER+2, Barney+2	; verification de la coordonnée Y
 			JNE CheckCaseFlanders		; si non égale, on regarde si la case est celle du suivant
+			cmp Barney+4, 1				; si la case est deja à 1, on continue
+			JE CheckCaseFlanders		; si égale, on regarde si la case est celle du suivant
 			mov Barney+4, 1				; on passe l'état à malade
+			call simpsonsound
+
 
 		CheckCaseFlanders:			; verification si la case est celle de Flanders
 			CMPMEM PLAYER, Flanders		; verification de la coordonnée X
 			JNE CheckCaseApu			; si non égale, on regarde si la case est celle du suivant
 			CMPMEM PLAYER+2, Flanders+2	; verification de la coordonnée Y
 			JNE CheckCaseApu			; si non égale, on regarde si la case est celle du suivant
+			cmp Flanders+4, 1			; si la case est deja à 1, on continue
+			JE CheckCaseApu				; si égale, on regarde si la case est celle du suivant
 			mov Flanders+4, 1			; on passe l'état à malade
+			call simpsonsound
+
 
 		CheckCaseApu:				; verification si la case est celle de Apu
 			CMPMEM PLAYER, Apu			; verification de la coordonnée X
 			JNE CheckCasePetitPapaNoel	; si non égale, on regarde si la case est celle du suivant
 			CMPMEM PLAYER+2, Apu+2		; verification de la coordonnée Y
 			JNE CheckCasePetitPapaNoel	; si non égale, on regarde si la case est celle du suivant
+			cmp Apu+4, 1				; si la case est deja à 1, on continue
+			JE CheckCasePetitPapaNoel	; si égale, on regarde si la case est celle du suivant
 			mov Apu+4, 1				; on passe l'état à malade
+			call simpsonsound
+
 
 		CheckCasePetitPapaNoel:		; verification si la case est celle de PetitPapaNoel
 			CMPMEM PLAYER, PetitPapaNoel		; verification de la coordonnée X
 			JNE CheckCaseBouleDeNeige			; si non égale, on regarde si la case est celle du suivant
 			CMPMEM PLAYER+2, PetitPapaNoel+2	; verification de la coordonnée Y
 			JNE CheckCaseBouleDeNeige			; si non égale, on regarde si la case est celle du suivant
+			cmp PetitPapaNoel+4, 1				; si la case est deja à 1, on continue
+			JE CheckCaseBouleDeNeige			; si égale, on regarde si la case est celle du suivant
 			mov PetitPapaNoel+4, 1				; on passe l'état à malade
+			call simpsonsound
+
 
 		CheckCaseBouleDeNeige:		; verification si la case est celle de BouleDeNeige
 			CMPMEM PLAYER, BouleDeNeige		; verification de la coordonnée X
 			JNE CheckCaseKrusty				; si non égale, on regarde si la case est celle du suivant
 			CMPMEM PLAYER+2, BouleDeNeige+2	; verification de la coordonnée Y
 			JNE CheckCaseKrusty				; si non égale, on regarde si la case est celle du suivant
+			cmp BouleDeNeige+4, 1			; si la case est deja à 1, on continue
+			JE CheckCaseKrusty				; si égale, on regarde si la case est celle du suivant
 			mov BouleDeNeige+4, 1			; on passe l'état à malade
+			call simpsonsound
+
 
 		CheckCaseKrusty:			; verification si la case est celle de Krusty
 			CMPMEM PLAYER, Krusty		; verification de la coordonnée X
 			JNE CheckCaseTahitiBob		; si non égale, on regarde si la case est celle du suivant
 			CMPMEM PLAYER+2, Krusty+2	; verification de la coordonnée Y
 			JNE CheckCaseTahitiBob		; si non égale, on regarde si la case est celle du suivant
+			cmp Krusty+4, 1				; si la case est deja à 1, on continue
+			JE CheckCaseTahitiBob		; si égale, on regarde si la case est celle du suivant
 			mov Krusty+4, 1				; on passe l'état à malade
+			call simpsonsound
+
 
 		CheckCaseTahitiBob:			; verification si la case est celle de TahitiBob
 			CMPMEM PLAYER, TahitiBob		; verification de la coordonnée X
 			JNE ENDCheckCase				; si non égale, on regarde si la case est celle du suivant
 			CMPMEM PLAYER+2, TahitiBob+2	; verification de la coordonnée Y
 			JNE ENDCheckCase				; si non égale, on regarde si la case est celle du suivant
+			cmp TahitiBob+4, 1				; si la case est deja à 1, on continue
+			JE ENDCheckCase					; si égale, on regarde si la case est celle du suivant
 			mov TahitiBob+4, 1				; on passe l'état à malade
+			call simpsonsound
+
 
 	ENDCheckCase:
 ret
 
 INCMOVSIM:
+	MOV AH, 00h  ; interrupts to get system time        
+	INT 1AH      ; CX:DX now hold number of clock ticks since midnight      
 
-	inc MOVSIM
-	cmp MOVSIM, 10
-	jne endINCMOVSIM
-	mov MOVSIM, 0	; la valeur de MOVSIM sera toujours 0, 1, 2 ou 3
-
-	endINCMOVSIM:
+	mov  ax, dx
+	xor  dx, dx
+	mov  cx, 10    
+	div  cx       ; here dx contains the remainder of the division - from 0 to 9
+	
+	mov MOVSIM, dx
+	; SETCURSOR 2, 24
+	; PRINTNUM MOVSIM
 ret
 
 movRIGHT MACRO x, max
@@ -142,7 +199,7 @@ ENDM
 
 
 movSimpsons:
-	call INCMOVSIM		; incrementation pour changer les deplacements futurs
+	; call INCMOVSIM		; incrementation pour changer les deplacements futurs
 
 	movHomer:				; on effectue le mouvement
 		call INCMOVSIM		; incrementation pour changer les deplacements futurs
@@ -152,7 +209,7 @@ movSimpsons:
 				movRIGHT HOMER, HOMER+6			; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp movMarge						; on change de simpson
 		HomerLeft:
-			cmp MOVSIM, 7						; verification de la valeur de MOVSIM
+			cmp MOVSIM, 5						; verification de la valeur de MOVSIM
 			JNE HomerUP							; si pas égale, on regarde le prochain mouvement
 				movLEFT HOMER, HOMER+8			; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp movMarge						; on change de simpson
@@ -174,7 +231,7 @@ movSimpsons:
 				movRIGHT Marge, Marge+6			; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp movBart							; on change de simpson
 		MargeLeft:
-			cmp MOVSIM, 9						; verification de la valeur de MOVSIM
+			cmp MOVSIM, 2						; verification de la valeur de MOVSIM
 			JNE MargeUP							; si pas égale, on regarde le prochain mouvement
 				movLEFT Marge, Marge+8			; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp movBart							; on change de simpson
@@ -184,7 +241,7 @@ movSimpsons:
 				movUP Marge+2, Marge+10			; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp movBart							; on change de simpson
 		MargeDOWN:
-			cmp MOVSIM, 7						; verification de la valeur de MOVSIM
+			cmp MOVSIM, 4						; verification de la valeur de MOVSIM
 			JNE movBart							; si pas égale, on regarde le prochain mouvement
 				movDOWN Marge+2, Marge+12		; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 
@@ -196,7 +253,7 @@ movSimpsons:
 				movRIGHT Bart, Bart+6			; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp movLisa							; on change de simpson
 		BartLeft:
-			cmp MOVSIM, 8						; verification de la valeur de MOVSIM
+			cmp MOVSIM, 5					; verification de la valeur de MOVSIM
 			JNE BartUP							; si pas égale, on regarde le prochain mouvement
 				movLEFT Bart, Bart+8			; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp movLisa							; on change de simpson
@@ -213,12 +270,12 @@ movSimpsons:
 	movLisa:				; on effectue le mouvement
 		call INCMOVSIM		; incrementation pour changer les deplacements futurs
 		LisaRIGHT:
-			cmp MOVSIM, 8						; verification de la valeur de MOVSIM
+			cmp MOVSIM, 4						; verification de la valeur de MOVSIM
 			JNE LisaLeft						; si pas égale, on regarde le prochain mouvement
 				movRIGHT Lisa, Lisa+6			; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp movMaggie						; on change de simpson
 		LisaLeft:
-			cmp MOVSIM, 6						; verification de la valeur de MOVSIM
+			cmp MOVSIM, 1						; verification de la valeur de MOVSIM
 			JNE LisaUP							; si pas égale, on regarde le prochain mouvement
 				movLEFT Lisa, Lisa+8			; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp movMaggie						; on change de simpson
@@ -245,12 +302,12 @@ movSimpsons:
 				movLEFT Maggie, Maggie+8		; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp movBarney						; on change de simpson
 		MaggieUP:
-			cmp MOVSIM, 8						; verification de la valeur de MOVSIM
+			cmp MOVSIM, 1						; verification de la valeur de MOVSIM
 			JNE MaggieDOWN						; si pas égale, on regarde le prochain mouvement
 				movUP Maggie+2, Maggie+10		; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp movBarney						; on change de simpson
 		MaggieDOWN:
-			cmp MOVSIM, 9						; verification de la valeur de MOVSIM
+			cmp MOVSIM, 3						; verification de la valeur de MOVSIM
 			JNE movBarney						; si pas égale, on regarde le prochain mouvement
 				movDOWN Maggie+2, Maggie+12		; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 
@@ -272,7 +329,7 @@ movSimpsons:
 				movUP Barney+2, Barney+10		; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp movFlanders						; on change de simpson
 		BarneyDOWN:
-			cmp MOVSIM, 7						; verification de la valeur de MOVSIM
+			cmp MOVSIM, 4						; verification de la valeur de MOVSIM
 			JNE movFlanders						; si pas égale, on regarde le prochain mouvement
 				movDOWN Barney+2, Barney+12		; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 
@@ -311,7 +368,7 @@ movSimpsons:
 				movLEFT Apu, Apu+8				; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp movPetitPapaNoel				; on change de simpson
 		ApuUP:
-			cmp MOVSIM, 6						; verification de la valeur de MOVSIM
+			cmp MOVSIM, 3						; verification de la valeur de MOVSIM
 			JNE ApuDOWN							; si pas égale, on regarde le prochain mouvement
 				movUP Apu+2, Apu+10				; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp movPetitPapaNoel				; on change de simpson
@@ -338,7 +395,7 @@ movSimpsons:
 				movUP PetitPapaNoel+2, PetitPapaNoel+10			; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp movBouleDeNeige									; on change de simpson
 		PetitPapaNoelDOWN:
-			cmp MOVSIM, 6										; verification de la valeur de MOVSIM
+			cmp MOVSIM, 3										; verification de la valeur de MOVSIM
 			JNE movBouleDeNeige									; si pas égale, on regarde le prochain mouvement
 				movDOWN PetitPapaNoel+2, PetitPapaNoel+12		; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 
@@ -350,7 +407,7 @@ movSimpsons:
 				movRIGHT BouleDeNeige, BouleDeNeige+6			; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp movKrusty										; on change de simpson
 		BouleDeNeigeLeft:
-			cmp MOVSIM, 7										; verification de la valeur de MOVSIM
+			cmp MOVSIM, 4										; verification de la valeur de MOVSIM
 			JNE BouleDeNeigeUP									; si pas égale, on regarde le prochain mouvement
 				movLEFT BouleDeNeige, BouleDeNeige+8			; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp movKrusty										; on change de simpson
@@ -367,12 +424,12 @@ movSimpsons:
 	movKrusty:					; on effectue le mouvement
 		call INCMOVSIM			; incrementation pour changer les deplacements futurs
 		KrustyRIGHT:
-			cmp MOVSIM, 6						; verification de la valeur de MOVSIM
+			cmp MOVSIM, 2						; verification de la valeur de MOVSIM
 			JNE KrustyLeft						; si pas égale, on regarde le prochain mouvement
 				movRIGHT Krusty, Krusty+6		; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp movTahitiBob					; on change de simpson
 		KrustyLeft:
-			cmp MOVSIM, 8							; verification de la valeur de MOVSIM
+			cmp MOVSIM, 1							; verification de la valeur de MOVSIM
 			JNE KrustyUP							; si pas égale, on regarde le prochain mouvement
 				movLEFT Krusty, Krusty+8			; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp movTahitiBob					; on change de simpson
@@ -399,7 +456,7 @@ movSimpsons:
 				movLEFT TahitiBob, TahitiBob+8		; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp ENDmovSimpsons						; on change de simpson
 		TahitiBobUP:
-			cmp MOVSIM, 5							; verification de la valeur de MOVSIM
+			cmp MOVSIM, 4							; verification de la valeur de MOVSIM
 			JNE TahitiBobDOWN						; si pas égale, on regarde le prochain mouvement
 				movUP TahitiBob+2, TahitiBob+10		; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp ENDmovSimpsons						; on change de simpson
@@ -412,5 +469,27 @@ movSimpsons:
 
 	ENDmovSimpsons:
 
+ret
+
+CHECKWIN:
+	push ax		; sauvegarde du registre
+
+	mov ax, 0
+	add ax, Homer+4
+	add ax, Marge+4
+	add ax, Bart+4
+	add ax, Lisa+4
+	add ax, Maggie+4
+	add ax, Barney+4
+	add ax, Flanders+4
+	add ax, Apu+4
+	add ax, PetitPapaNoel+4
+	add ax, BouleDeNeige+4
+	add ax, Krusty+4
+	add ax, TahitiBob+4
+	cmp ax, 12				; on additionne tous les boolean
+	JE winPanel				; et on regarde si le resultat est égale au nombre de simpson
+
+	pop ax		; recuperation du registre
 ret
 
