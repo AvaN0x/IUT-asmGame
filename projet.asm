@@ -17,10 +17,10 @@ DSEG		SEGMENT
 	_DOWN_  EQU 50h		; Flèche BAS
 	_UP_    EQU 48h		; Flèche HAUT
 	_LEFT_  EQU 4bh		; Flèche GAUCHE
-	_KZ_	EQU	2ch		; Z
-	_KQ_	EQU	10h		; Q
-	_KS_	EQU	1fh		; S
-	_KD_	EQU	20h		; D
+	_KZ_	EQU 2ch		; Z
+	_KQ_	EQU 10h		; Q
+	_KS_	EQU 1fh		; S
+	_KD_	EQU 20h		; D
 	_Kent_  EQU 1ch		; ENTER
 	_Kspce_	EQU	39h		; SPACE
 	_KH_	EQU	23h		; H
