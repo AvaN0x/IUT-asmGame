@@ -286,6 +286,27 @@ gameMain:
 		stringout S_ESCAPE		; Press Escape to leave
 
 		call movSimpsons
+		
+		CHECKWIN:
+			push ax		; sauvegarde du registre
+
+			mov ax, 0
+			add ax, Homer+4
+			add ax, Marge+4
+			add ax, Bart+4
+			add ax, Lisa+4
+			add ax, Maggie+4
+			add ax, Barney+4
+			add ax, Flanders+4
+			add ax, Apu+4
+			add ax, PetitPapaNoel+4
+			add ax, BouleDeNeige+4
+			add ax, Krusty+4
+			add ax, TahitiBob+4
+			cmp ax, 12				; on additionne tous les boolean
+			JE winPanel				; et on regarde si le resultat est égale au nombre de simpson
+
+			pop ax		; recuperation du registre
 
 
 		HomerCheckSick:				; verification de l'état d'Homer
