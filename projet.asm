@@ -22,8 +22,8 @@ DSEG		SEGMENT
 	_KS_	EQU 1fh		; S
 	_KD_	EQU 20h		; D
 	_Kent_  EQU 1ch		; ENTER
-	_Kspce_	EQU	39h		; SPACE
-	_KH_	EQU	23h		; H
+	_Kspce_	EQU 39h		; SPACE
+	_KH_	EQU 23h		; H
 	_Kesc_  EQU 01h		; ESCAPE
 
 ; --------------------------
@@ -51,9 +51,9 @@ DSEG		SEGMENT
 	_PURPLE_	EQU 6Ch
 	_LPURPLE_	EQU 24h
 	_PINK_		EQU 41h
-	_DPINK_		EQU	40h
+	_DPINK_		EQU 40h
 	_ORANGE_	EQU 2Ah
-	_LORANGE_	EQU	2Bh
+	_LORANGE_	EQU 2Bh
 	_YELLOW_	EQU 0Eh
 
 ; --------------------------
@@ -70,7 +70,7 @@ DSEG		SEGMENT
 	Maggie		DW	112, 	80, 		0,				152,	104,	16,		88
 	Barney		DW	24, 	64, 		0,				96,		8,		56,		88
 	Flanders	DW	200, 	112, 		0,				208,	160,	104,	176
-	Apu			DW	24, 	128, 		0,				96,		8,		104,	136
+	Apu 		DW	24, 	128, 		0,				96,		8,		104,	136
 	PetitPapaNoel	DW	112, 112, 		0,				152,	104,	104,	176
 	BouleDeNeige	DW	240, 152, 		0,				304,	216,	144,	176
 	Krusty		DW	288, 	64, 		0,				304,	216,	56,		88
