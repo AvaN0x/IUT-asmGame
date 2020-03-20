@@ -84,12 +84,12 @@ DSEG		SEGMENT
 ; --------------------------
 
 	; all
-	S_ESCAPE	DB	"Press Escape to leave", 24h
+	S_ESCAPE	DB "Press Escape to leave", 24h
 
 	; gameMenu
-	S_MENU1		DB	"Spread the virus to the SIMPSONS !", 24h
-	S_MENU2		DB	"Press Enter or Space to play", 24H
-	S_MENU3		DB	"Press H for the Help tab", 24H
+	S_MENU1		DB "Spread the virus to the SIMPSONS !", 24h
+	S_MENU2		DB "Press Enter or Space to play", 24H
+	S_MENU3		DB "Press H for the Help tab", 24H
 
 	; helpPanel
 
@@ -102,15 +102,15 @@ DSEG		SEGMENT
 	S_HLEAVE	DB "Press any key to leave", 24h
 
 	; gameMain
-	S_NBMOVE	DB	" moves", 13, 10, 24h
-	S_RECORD	DB	"Record: ", 24h
+	S_NBMOVE	DB " moves", 13, 10, 24h
+	S_RECORD	DB "Record: ", 24h
 
 	; winPanel
 	S_WIN1		DB "Victory in", 24h
 	S_WIN2		DB "moves", 24h
 	S_WINRECORD1	DB "You have set your new record!", 24h
 	S_WINRECORD2	DB "You beated your old record !", 24h
-	S_ENTER		DB	"Press Enter to continue", 24h
+	S_ENTER		DB "Press Enter to continue", 24h
 
 DSEG		ENDS
 ;-------------------------------------CODE SEGMENT
