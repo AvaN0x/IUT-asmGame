@@ -518,7 +518,7 @@ CHECKWIN:
 	add ax, BouleDeNeige+4
 	add ax, Krusty+4
 	add ax, TahitiBob+4
-	cmp ax, 1				; on additionne tous les boolean
+	cmp ax, 12				; on additionne tous les boolean
 	JE winPanel				; et on regarde si le resultat est égale au nombre de simpson
 
 	pop ax		; recuperation du registre
