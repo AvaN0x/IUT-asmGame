@@ -1820,226 +1820,226 @@ DrawTahitiBob MACRO LColor, NColor      ; LIGHT color and Normal color
 		pop cx
 ENDM
 
-DrawPLAYERTEMPLATE MACRO LColor, NColor      ; LIGHT color and Normal color
-	mov cx, PLAYER		; x coordinate
-	mov dx, PLAYER+2	; y coordinate
-	mov ah, 0ch			; procedure pour pixel
-	mov bh, 1    		; page no - critical while animating
+; DrawPLAYERTEMPLATE MACRO LColor, NColor      ; LIGHT color and Normal color
+; 	mov cx, PLAYER		; x coordinate
+; 	mov dx, PLAYER+2	; y coordinate
+; 	mov ah, 0ch			; procedure pour pixel
+; 	mov bh, 1    		; page no - critical while animating
 
-	; ligne 0
-		push cx
-			mov al, LColor
-			int 10h 			; interruption correspondante	; (0,0)
-			add cx, 1
-			mov al, _BLUE_
-			int 10h 			; interruption correspondante	; (0,1)
-			add cx, 1
-			mov al, _GREEN_
-			int 10h 			; interruption correspondante	; (0,2)
-			add cx, 1
-			mov al, _CYAN_
-			int 10h 			; interruption correspondante	; (0,3)
-			add cx, 1
-			mov al, _RED_
-			int 10h 			; interruption correspondante	; (0,4)
-			add cx, 1
-			mov al, _MAGENTA_
-			int 10h 			; interruption correspondante	; (0,5)
-			add cx, 1
-			mov al, _BROWN_
-			int 10h 			; interruption correspondante	; (0,6)
-			add cx, 1
-			mov al, _WHITE_
-			int 10h 			; interruption correspondante	; (0,7)
-		pop cx
-	; ligne 1
-		add dx, 1
-		push cx
-			mov al, LColor
-			int 10h 			; interruption correspondante	; (1,0)
-			add cx, 1
-			mov al, _BLUE_
-			int 10h 			; interruption correspondante	; (1,1)
-			add cx, 1
-			mov al, _GREEN_
-			int 10h 			; interruption correspondante	; (1,2)
-			add cx, 1
-			mov al, _CYAN_
-			int 10h 			; interruption correspondante	; (1,3)
-			add cx, 1
-			mov al, _RED_
-			int 10h 			; interruption correspondante	; (1,4)
-			add cx, 1
-			mov al, _MAGENTA_
-			int 10h 			; interruption correspondante	; (1,5)
-			add cx, 1
-			mov al, _BROWN_
-			int 10h 			; interruption correspondante	; (1,6)
-			add cx, 1
-			mov al, _WHITE_
-			int 10h 			; interruption correspondante	; (1,7)
-		pop cx
-	; ligne 2
-		add dx, 1
-		push cx
-			mov al, LColor
-			int 10h 			; interruption correspondante	; (2,0)
-			add cx, 1
-			mov al, _BLUE_
-			int 10h 			; interruption correspondante	; (2,1)
-			add cx, 1
-			mov al, _GREEN_
-			int 10h 			; interruption correspondante	; (2,2)
-			add cx, 1
-			mov al, _CYAN_
-			int 10h 			; interruption correspondante	; (2,3)
-			add cx, 1
-			mov al, _RED_
-			int 10h 			; interruption correspondante	; (2,4)
-			add cx, 1
-			mov al, _MAGENTA_
-			int 10h 			; interruption correspondante	; (2,5)
-			add cx, 1
-			mov al, _BROWN_
-			int 10h 			; interruption correspondante	; (2,6)
-			add cx, 1
-			mov al, _WHITE_
-			int 10h 			; interruption correspondante	; (2,7)
-		pop cx
-	; ligne 3
-		add dx, 1
-		push cx
-			mov al, LColor
-			int 10h 			; interruption correspondante	; (3,0)
-			add cx, 1
-			mov al, _BLUE_
-			int 10h 			; interruption correspondante	; (3,1)
-			add cx, 1
-			mov al, _GREEN_
-			int 10h 			; interruption correspondante	; (3,2)
-			add cx, 1
-			mov al, _CYAN_
-			int 10h 			; interruption correspondante	; (3,3)
-			add cx, 1
-			mov al, _RED_
-			int 10h 			; interruption correspondante	; (3,4)
-			add cx, 1
-			mov al, _MAGENTA_
-			int 10h 			; interruption correspondante	; (3,5)
-			add cx, 1
-			mov al, _BROWN_
-			int 10h 			; interruption correspondante	; (3,6)
-			add cx, 1
-			mov al, _WHITE_
-			int 10h 			; interruption correspondante	; (3,7)
-		pop cx
-	; ligne 4
-		add dx, 1
-		push cx
-			mov al, LColor
-			int 10h 			; interruption correspondante	; (4,0)
-			add cx, 1
-			mov al, _BLUE_
-			int 10h 			; interruption correspondante	; (4,1)
-			add cx, 1
-			mov al, _GREEN_
-			int 10h 			; interruption correspondante	; (4,2)
-			add cx, 1
-			mov al, _CYAN_
-			int 10h 			; interruption correspondante	; (4,3)
-			add cx, 1
-			mov al, _RED_
-			int 10h 			; interruption correspondante	; (4,4)
-			add cx, 1
-			mov al, _MAGENTA_
-			int 10h 			; interruption correspondante	; (4,5)
-			add cx, 1
-			mov al, _BROWN_
-			int 10h 			; interruption correspondante	; (4,6)
-			add cx, 1
-			mov al, _WHITE_
-			int 10h 			; interruption correspondante	; (4,7)
-		pop cx
-	; ligne 5
-		add dx, 1
-		push cx
-			mov al, LColor
-			int 10h 			; interruption correspondante	; (5,0)
-			add cx, 1
-			mov al, _BLUE_
-			int 10h 			; interruption correspondante	; (5,1)
-			add cx, 1
-			mov al, _GREEN_
-			int 10h 			; interruption correspondante	; (5,2)
-			add cx, 1
-			mov al, _CYAN_
-			int 10h 			; interruption correspondante	; (5,3)
-			add cx, 1
-			mov al, _RED_
-			int 10h 			; interruption correspondante	; (5,4)
-			add cx, 1
-			mov al, _MAGENTA_
-			int 10h 			; interruption correspondante	; (5,5)
-			add cx, 1
-			mov al, _BROWN_
-			int 10h 			; interruption correspondante	; (5,6)
-			add cx, 1
-			mov al, _WHITE_
-			int 10h 			; interruption correspondante	; (5,7)
-		pop cx
-	; ligne 6
-		add dx, 1
-		push cx
-			mov al, LColor
-			int 10h 			; interruption correspondante	; (6,0)
-			add cx, 1
-			mov al, _BLUE_
-			int 10h 			; interruption correspondante	; (6,1)
-			add cx, 1
-			mov al, _GREEN_
-			int 10h 			; interruption correspondante	; (6,2)
-			add cx, 1
-			mov al, _CYAN_
-			int 10h 			; interruption correspondante	; (6,3)
-			add cx, 1
-			mov al, _RED_
-			int 10h 			; interruption correspondante	; (6,4)
-			add cx, 1
-			mov al, _MAGENTA_
-			int 10h 			; interruption correspondante	; (6,5)
-			add cx, 1
-			mov al, _BROWN_
-			int 10h 			; interruption correspondante	; (6,6)
-			add cx, 1
-			mov al, _WHITE_
-			int 10h 			; interruption correspondante	; (6,7)
-		pop cx
-	; ligne 7
-		add dx, 1
-		push cx
-			mov al, LColor
-			int 10h 			; interruption correspondante	; (7,0)
-			add cx, 1
-			mov al, _BLUE_
-			int 10h 			; interruption correspondante	; (7,1)
-			add cx, 1
-			mov al, _GREEN_
-			int 10h 			; interruption correspondante	; (7,2)
-			add cx, 1
-			mov al, _CYAN_
-			int 10h 			; interruption correspondante	; (7,3)
-			add cx, 1
-			mov al, _RED_
-			int 10h 			; interruption correspondante	; (7,4)
-			add cx, 1
-			mov al, _MAGENTA_
-			int 10h 			; interruption correspondante	; (7,5)
-			add cx, 1
-			mov al, _BROWN_
-			int 10h 			; interruption correspondante	; (7,6)
-			add cx, 1
-			mov al, _WHITE_
-			int 10h 			; interruption correspondante	; (7,7)
-		pop cx
-ENDM
+; 	; ligne 0
+; 		push cx
+; 			mov al, LColor
+; 			int 10h 			; interruption correspondante	; (0,0)
+; 			add cx, 1
+; 			mov al, _BLUE_
+; 			int 10h 			; interruption correspondante	; (0,1)
+; 			add cx, 1
+; 			mov al, _GREEN_
+; 			int 10h 			; interruption correspondante	; (0,2)
+; 			add cx, 1
+; 			mov al, _CYAN_
+; 			int 10h 			; interruption correspondante	; (0,3)
+; 			add cx, 1
+; 			mov al, _RED_
+; 			int 10h 			; interruption correspondante	; (0,4)
+; 			add cx, 1
+; 			mov al, _MAGENTA_
+; 			int 10h 			; interruption correspondante	; (0,5)
+; 			add cx, 1
+; 			mov al, _BROWN_
+; 			int 10h 			; interruption correspondante	; (0,6)
+; 			add cx, 1
+; 			mov al, _WHITE_
+; 			int 10h 			; interruption correspondante	; (0,7)
+; 		pop cx
+; 	; ligne 1
+; 		add dx, 1
+; 		push cx
+; 			mov al, LColor
+; 			int 10h 			; interruption correspondante	; (1,0)
+; 			add cx, 1
+; 			mov al, _BLUE_
+; 			int 10h 			; interruption correspondante	; (1,1)
+; 			add cx, 1
+; 			mov al, _GREEN_
+; 			int 10h 			; interruption correspondante	; (1,2)
+; 			add cx, 1
+; 			mov al, _CYAN_
+; 			int 10h 			; interruption correspondante	; (1,3)
+; 			add cx, 1
+; 			mov al, _RED_
+; 			int 10h 			; interruption correspondante	; (1,4)
+; 			add cx, 1
+; 			mov al, _MAGENTA_
+; 			int 10h 			; interruption correspondante	; (1,5)
+; 			add cx, 1
+; 			mov al, _BROWN_
+; 			int 10h 			; interruption correspondante	; (1,6)
+; 			add cx, 1
+; 			mov al, _WHITE_
+; 			int 10h 			; interruption correspondante	; (1,7)
+; 		pop cx
+; 	; ligne 2
+; 		add dx, 1
+; 		push cx
+; 			mov al, LColor
+; 			int 10h 			; interruption correspondante	; (2,0)
+; 			add cx, 1
+; 			mov al, _BLUE_
+; 			int 10h 			; interruption correspondante	; (2,1)
+; 			add cx, 1
+; 			mov al, _GREEN_
+; 			int 10h 			; interruption correspondante	; (2,2)
+; 			add cx, 1
+; 			mov al, _CYAN_
+; 			int 10h 			; interruption correspondante	; (2,3)
+; 			add cx, 1
+; 			mov al, _RED_
+; 			int 10h 			; interruption correspondante	; (2,4)
+; 			add cx, 1
+; 			mov al, _MAGENTA_
+; 			int 10h 			; interruption correspondante	; (2,5)
+; 			add cx, 1
+; 			mov al, _BROWN_
+; 			int 10h 			; interruption correspondante	; (2,6)
+; 			add cx, 1
+; 			mov al, _WHITE_
+; 			int 10h 			; interruption correspondante	; (2,7)
+; 		pop cx
+; 	; ligne 3
+; 		add dx, 1
+; 		push cx
+; 			mov al, LColor
+; 			int 10h 			; interruption correspondante	; (3,0)
+; 			add cx, 1
+; 			mov al, _BLUE_
+; 			int 10h 			; interruption correspondante	; (3,1)
+; 			add cx, 1
+; 			mov al, _GREEN_
+; 			int 10h 			; interruption correspondante	; (3,2)
+; 			add cx, 1
+; 			mov al, _CYAN_
+; 			int 10h 			; interruption correspondante	; (3,3)
+; 			add cx, 1
+; 			mov al, _RED_
+; 			int 10h 			; interruption correspondante	; (3,4)
+; 			add cx, 1
+; 			mov al, _MAGENTA_
+; 			int 10h 			; interruption correspondante	; (3,5)
+; 			add cx, 1
+; 			mov al, _BROWN_
+; 			int 10h 			; interruption correspondante	; (3,6)
+; 			add cx, 1
+; 			mov al, _WHITE_
+; 			int 10h 			; interruption correspondante	; (3,7)
+; 		pop cx
+; 	; ligne 4
+; 		add dx, 1
+; 		push cx
+; 			mov al, LColor
+; 			int 10h 			; interruption correspondante	; (4,0)
+; 			add cx, 1
+; 			mov al, _BLUE_
+; 			int 10h 			; interruption correspondante	; (4,1)
+; 			add cx, 1
+; 			mov al, _GREEN_
+; 			int 10h 			; interruption correspondante	; (4,2)
+; 			add cx, 1
+; 			mov al, _CYAN_
+; 			int 10h 			; interruption correspondante	; (4,3)
+; 			add cx, 1
+; 			mov al, _RED_
+; 			int 10h 			; interruption correspondante	; (4,4)
+; 			add cx, 1
+; 			mov al, _MAGENTA_
+; 			int 10h 			; interruption correspondante	; (4,5)
+; 			add cx, 1
+; 			mov al, _BROWN_
+; 			int 10h 			; interruption correspondante	; (4,6)
+; 			add cx, 1
+; 			mov al, _WHITE_
+; 			int 10h 			; interruption correspondante	; (4,7)
+; 		pop cx
+; 	; ligne 5
+; 		add dx, 1
+; 		push cx
+; 			mov al, LColor
+; 			int 10h 			; interruption correspondante	; (5,0)
+; 			add cx, 1
+; 			mov al, _BLUE_
+; 			int 10h 			; interruption correspondante	; (5,1)
+; 			add cx, 1
+; 			mov al, _GREEN_
+; 			int 10h 			; interruption correspondante	; (5,2)
+; 			add cx, 1
+; 			mov al, _CYAN_
+; 			int 10h 			; interruption correspondante	; (5,3)
+; 			add cx, 1
+; 			mov al, _RED_
+; 			int 10h 			; interruption correspondante	; (5,4)
+; 			add cx, 1
+; 			mov al, _MAGENTA_
+; 			int 10h 			; interruption correspondante	; (5,5)
+; 			add cx, 1
+; 			mov al, _BROWN_
+; 			int 10h 			; interruption correspondante	; (5,6)
+; 			add cx, 1
+; 			mov al, _WHITE_
+; 			int 10h 			; interruption correspondante	; (5,7)
+; 		pop cx
+; 	; ligne 6
+; 		add dx, 1
+; 		push cx
+; 			mov al, LColor
+; 			int 10h 			; interruption correspondante	; (6,0)
+; 			add cx, 1
+; 			mov al, _BLUE_
+; 			int 10h 			; interruption correspondante	; (6,1)
+; 			add cx, 1
+; 			mov al, _GREEN_
+; 			int 10h 			; interruption correspondante	; (6,2)
+; 			add cx, 1
+; 			mov al, _CYAN_
+; 			int 10h 			; interruption correspondante	; (6,3)
+; 			add cx, 1
+; 			mov al, _RED_
+; 			int 10h 			; interruption correspondante	; (6,4)
+; 			add cx, 1
+; 			mov al, _MAGENTA_
+; 			int 10h 			; interruption correspondante	; (6,5)
+; 			add cx, 1
+; 			mov al, _BROWN_
+; 			int 10h 			; interruption correspondante	; (6,6)
+; 			add cx, 1
+; 			mov al, _WHITE_
+; 			int 10h 			; interruption correspondante	; (6,7)
+; 		pop cx
+; 	; ligne 7
+; 		add dx, 1
+; 		push cx
+; 			mov al, LColor
+; 			int 10h 			; interruption correspondante	; (7,0)
+; 			add cx, 1
+; 			mov al, _BLUE_
+; 			int 10h 			; interruption correspondante	; (7,1)
+; 			add cx, 1
+; 			mov al, _GREEN_
+; 			int 10h 			; interruption correspondante	; (7,2)
+; 			add cx, 1
+; 			mov al, _CYAN_
+; 			int 10h 			; interruption correspondante	; (7,3)
+; 			add cx, 1
+; 			mov al, _RED_
+; 			int 10h 			; interruption correspondante	; (7,4)
+; 			add cx, 1
+; 			mov al, _MAGENTA_
+; 			int 10h 			; interruption correspondante	; (7,5)
+; 			add cx, 1
+; 			mov al, _BROWN_
+; 			int 10h 			; interruption correspondante	; (7,6)
+; 			add cx, 1
+; 			mov al, _WHITE_
+; 			int 10h 			; interruption correspondante	; (7,7)
+; 		pop cx
+; ENDM
 

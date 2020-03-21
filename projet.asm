@@ -93,6 +93,9 @@ DSEG		SEGMENT
 	S_MENU2		DB "Press Enter or Space to play", 24H
 	S_MENU3		DB "Press H for the Help tab", 24H
 
+	S_CREDIT	DB "By github.com/AvaN0x", 24h
+	S_CREDIT2	DB "and Valentin Azancoth", 24h
+
 	; helpPanel
 
 	S_HGOAL1	DB "Your goal is to touch", 24h  
@@ -142,24 +145,48 @@ gameMenu:
 	CLEARSCREEN	_LORANGE_		; on nettoie l'écran entièrement à chaque tour
 	FILLSCREEN 1, 1, 38, 23, _BLACK_		; on remplis la zone visuelle
 
-	SETCURSOR 3, 7
-	STRINGOUT S_MENU1			; "Contaminez les SIMPSONS !"
+	SETCURSOR 3, 6
+	STRINGOUT S_MENU1			; "Spread the virus to the SIMPSONS !"
 
-	SETCURSOR 5, 15
+	SETCURSOR 5, 13
 	STRINGOUT S_MENU2			; "Press Enter or Space to play"
-	SETCURSOR 7, 17
+	SETCURSOR 7, 15
 	STRINGOUT S_MENU3			; "Press H for the Help tab"
-	SETCURSOR 9, 19
+	SETCURSOR 9, 17
 	STRINGOUT S_ESCAPE			; "Press Escape to leave"
 
-	SETCURSOR 0, 22
+
+	SETCURSOR 18, 21
+	STRINGOUT S_CREDIT			; "By github.com/AvaN0x"
+	SETCURSOR 17, 22
+	STRINGOUT S_CREDIT2			; "and Valentin Azancoth"
+
+
+	call menuSimpsonReset		; on donne au simpson la position voulue pour le menu
+
+	; on dessine les simpsons
+		DrawHomer		_YELLOW_, _LORANGE_	
+		DrawMarge		_YELLOW_, _LORANGE_	
+		DrawBart		_YELLOW_, _LORANGE_	
+		DrawLisa		_YELLOW_, _LORANGE_	
+		DrawMaggie		_YELLOW_, _LORANGE_	
+		DrawBarney		_YELLOW_, _LORANGE_	
+		DrawFlanders	_YELLOW_, _LORANGE_	
+		DrawApu			_BROWN_	
+		DrawPetitPapaNoel	_ORANGE_, _BROWN_	
+		DrawBouleDeNeige	_GRAY_, _DBLUE_	
+		DrawKrusty		_YELLOW_, _LORANGE_	
+		DrawTahitiBob	_YELLOW_, _LORANGE_	
+
+	SETCURSOR 0, 22		; position du curseur pour le message lorsque le programme s'arrête "Press any key to continue."
+
 	mov ah, 0		; fonction pour recuperer la touche
 	int 16h			; get key press
 
 	cmp ah, _Kent_		; if key = ENTER
-	je gameReset		; on met fin au programme
+	je gameSimpsonReset		; on met fin au programme
 	cmp ah, _Kspce_		; if key = ENTER
-	je gameReset		; on met fin au programme
+	je gameSimpsonReset		; on met fin au programme
 
 	cmp ah, _KH_		; if key = H
 	je helpPanel		; on met fin au programme
@@ -168,6 +195,8 @@ gameMenu:
 	je ENDPROG			; on met fin au programme
 
 jmp gameMenu			; on retourne dans la boucle jusqu'a trouver une bonne touche
+
+
 
 ; --------------------------
 ; helpPanel
@@ -198,10 +227,10 @@ helpPanel:
 jmp gameMenu
 
 ; --------------------------
-; Reinitialisation
+; Reinitialisation pour le jeu
 ; --------------------------
 
-gameReset:
+gameSimpsonReset:
 	mov PLAYER, 152				; reinitialisation des paramètres
 		mov PLAYER+2, 96
 		mov PLAYER+4, 0

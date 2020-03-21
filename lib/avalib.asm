@@ -227,6 +227,22 @@ DELAY MACRO time
 	pop ax		;
 ENDM
 
+RAND MACRO target
+	MOV AH, 00h  ; interrupts to get system time        
+	INT 1AH      ; CX:DX now hold number of clock ticks since midnight      
+
+	mov  ax, dx
+	xor  dx, dx
+	mov  cx, 10    
+	div  cx       ; here dx contains the remainder of the division - from 0 to 9
+	
+	mov target, dx
+	SETCURSOR 2, 24
+	PRINTNUM target
+
+ENDM
+
+
 SOUND MACRO frequency, duration
 	local pause1, pause2
 

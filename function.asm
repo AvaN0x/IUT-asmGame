@@ -1,10 +1,18 @@
-simpsonsound:
+; ------------------------------------------------------------
+; Son lorsqu'un simpson devient malade
+; ------------------------------------------------------------
+
+
+simpsonGetSickSound:
 	SOUND 2280, 1	;	C	523.25hz
 	SOUND 2031, 1	;	D	587.33hz
-
 ret
 
-CheckCase:      ; label pour verifier si le joueur se trouve a la position d'un simpson
+; ------------------------------------------------------------
+; Verifier si le joueur se trouve a la position d'un simpson
+; ------------------------------------------------------------
+
+CheckCase: 
 		CheckCaseHomer:				; verification si la case est celle d'Homer
 			CMPMEM PLAYER, Homer		; verification de la coordonnée X
 			JNE CheckCaseMarge			; si non égale, on regarde si la case est celle du suivant
@@ -13,7 +21,7 @@ CheckCase:      ; label pour verifier si le joueur se trouve a la position d'un 
 			cmp Homer+4, 1				; si la case est deja à 1, on continue
 			JE CheckCaseMarge			; si égale, on regarde si la case est celle du suivant
 			mov Homer+4, 1				; on passe l'état à malade
-			call simpsonsound
+			call simpsonGetSickSound
  
 		CheckCaseMarge:				; verification si la case est celle de Marge
 			CMPMEM PLAYER, Marge		; verification de la coordonnée X
@@ -23,7 +31,7 @@ CheckCase:      ; label pour verifier si le joueur se trouve a la position d'un 
 			cmp Marge+4, 1				; si la case est deja à 1, on continue
 			JE CheckCaseBart			; si égale, on regarde si la case est celle du suivant
 			mov Marge+4, 1				; on passe l'état à malade
-			call simpsonsound
+			call simpsonGetSickSound
 
 
 		CheckCaseBart:				; verification si la case est celle de Bart
@@ -34,7 +42,7 @@ CheckCase:      ; label pour verifier si le joueur se trouve a la position d'un 
 			cmp Bart+4, 1				; si la case est deja à 1, on continue
 			JE CheckCaseLisa			; si égale, on regarde si la case est celle du suivant
 			mov Bart+4, 1				; on passe l'état à malade
-			call simpsonsound
+			call simpsonGetSickSound
 
 
 		CheckCaseLisa:				; verification si la case est celle de Lisa
@@ -45,7 +53,7 @@ CheckCase:      ; label pour verifier si le joueur se trouve a la position d'un 
 			cmp Lisa+4, 1				; si la case est deja à 1, on continue
 			JE CheckCaseMaggie			; si égale, on regarde si la case est celle du suivant
 			mov Lisa+4, 1				; on passe l'état à malade
-			call simpsonsound
+			call simpsonGetSickSound
 
 
 		CheckCaseMaggie:			; verification si la case est celle de Maggie
@@ -56,7 +64,7 @@ CheckCase:      ; label pour verifier si le joueur se trouve a la position d'un 
 			cmp Maggie+4, 1				; si la case est deja à 1, on continue
 			JE CheckCaseBarney			; si égale, on regarde si la case est celle du suivant
 			mov Maggie+4, 1				; on passe l'état à malade
-			call simpsonsound
+			call simpsonGetSickSound
 
 
 		CheckCaseBarney:			; verification si la case est celle de Barney
@@ -67,7 +75,7 @@ CheckCase:      ; label pour verifier si le joueur se trouve a la position d'un 
 			cmp Barney+4, 1				; si la case est deja à 1, on continue
 			JE CheckCaseFlanders		; si égale, on regarde si la case est celle du suivant
 			mov Barney+4, 1				; on passe l'état à malade
-			call simpsonsound
+			call simpsonGetSickSound
 
 
 		CheckCaseFlanders:			; verification si la case est celle de Flanders
@@ -78,7 +86,7 @@ CheckCase:      ; label pour verifier si le joueur se trouve a la position d'un 
 			cmp Flanders+4, 1			; si la case est deja à 1, on continue
 			JE CheckCaseApu				; si égale, on regarde si la case est celle du suivant
 			mov Flanders+4, 1			; on passe l'état à malade
-			call simpsonsound
+			call simpsonGetSickSound
 
 
 		CheckCaseApu:				; verification si la case est celle de Apu
@@ -89,7 +97,7 @@ CheckCase:      ; label pour verifier si le joueur se trouve a la position d'un 
 			cmp Apu+4, 1				; si la case est deja à 1, on continue
 			JE CheckCasePetitPapaNoel	; si égale, on regarde si la case est celle du suivant
 			mov Apu+4, 1				; on passe l'état à malade
-			call simpsonsound
+			call simpsonGetSickSound
 
 
 		CheckCasePetitPapaNoel:		; verification si la case est celle de PetitPapaNoel
@@ -100,7 +108,7 @@ CheckCase:      ; label pour verifier si le joueur se trouve a la position d'un 
 			cmp PetitPapaNoel+4, 1				; si la case est deja à 1, on continue
 			JE CheckCaseBouleDeNeige			; si égale, on regarde si la case est celle du suivant
 			mov PetitPapaNoel+4, 1				; on passe l'état à malade
-			call simpsonsound
+			call simpsonGetSickSound
 
 
 		CheckCaseBouleDeNeige:		; verification si la case est celle de BouleDeNeige
@@ -111,7 +119,7 @@ CheckCase:      ; label pour verifier si le joueur se trouve a la position d'un 
 			cmp BouleDeNeige+4, 1			; si la case est deja à 1, on continue
 			JE CheckCaseKrusty				; si égale, on regarde si la case est celle du suivant
 			mov BouleDeNeige+4, 1			; on passe l'état à malade
-			call simpsonsound
+			call simpsonGetSickSound
 
 
 		CheckCaseKrusty:			; verification si la case est celle de Krusty
@@ -122,7 +130,7 @@ CheckCase:      ; label pour verifier si le joueur se trouve a la position d'un 
 			cmp Krusty+4, 1				; si la case est deja à 1, on continue
 			JE CheckCaseTahitiBob		; si égale, on regarde si la case est celle du suivant
 			mov Krusty+4, 1				; on passe l'état à malade
-			call simpsonsound
+			call simpsonGetSickSound
 
 
 		CheckCaseTahitiBob:			; verification si la case est celle de TahitiBob
@@ -133,25 +141,15 @@ CheckCase:      ; label pour verifier si le joueur se trouve a la position d'un 
 			cmp TahitiBob+4, 1				; si la case est deja à 1, on continue
 			JE ENDCheckCase					; si égale, on regarde si la case est celle du suivant
 			mov TahitiBob+4, 1				; on passe l'état à malade
-			call simpsonsound
+			call simpsonGetSickSound
 
 
 	ENDCheckCase:
 ret
 
-INCMOVSIM:
-	MOV AH, 00h  ; interrupts to get system time        
-	INT 1AH      ; CX:DX now hold number of clock ticks since midnight      
-
-	mov  ax, dx
-	xor  dx, dx
-	mov  cx, 10    
-	div  cx       ; here dx contains the remainder of the division - from 0 to 9
-	
-	mov MOVSIM, dx
-	; SETCURSOR 2, 24
-	; PRINTNUM MOVSIM
-ret
+; -------------------------------------------
+; Macros pour les deplacements des Simpsons
+; -------------------------------------------
 
 movRIGHT MACRO x, max
 	local movEND
@@ -197,12 +195,13 @@ movDOWN MACRO y, max
 	movEND:
 ENDM
 
+; ---------------------------------------
+; Fonction pour deplacements aléatoires
+; ---------------------------------------
 
 movSimpsons:
-	; call INCMOVSIM		; incrementation pour changer les deplacements futurs
-
 	movHomer:				; on effectue le mouvement
-		call INCMOVSIM		; incrementation pour changer les deplacements futurs
+		RAND MOVSIM
 		HomerRIGHT:
 			cmp MOVSIM, 0						; verification de la valeur de MOVSIM
 			JNE HomerLeft						; si pas égale, on regarde le prochain mouvement
@@ -224,7 +223,7 @@ movSimpsons:
 				movDOWN HOMER+2, HOMER+12		; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 
 	movMarge:				; on effectue le mouvement
-		call INCMOVSIM		; incrementation pour changer les deplacements futurs
+		RAND MOVSIM
 		MargeRIGHT:
 			cmp MOVSIM, 0						; verification de la valeur de MOVSIM
 			JNE MargeLeft						; si pas égale, on regarde le prochain mouvement
@@ -246,7 +245,7 @@ movSimpsons:
 				movDOWN Marge+2, Marge+12		; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 
 	movBart:				; on effectue le mouvement
-		call INCMOVSIM		; incrementation pour changer les deplacements futurs
+		RAND MOVSIM
 		BartRIGHT:
 			cmp MOVSIM, 3						; verification de la valeur de MOVSIM
 			JNE BartLeft						; si pas égale, on regarde le prochain mouvement
@@ -268,7 +267,7 @@ movSimpsons:
 				movDOWN Bart+2, Bart+12			; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 
 	movLisa:				; on effectue le mouvement
-		call INCMOVSIM		; incrementation pour changer les deplacements futurs
+		RAND MOVSIM
 		LisaRIGHT:
 			cmp MOVSIM, 4						; verification de la valeur de MOVSIM
 			JNE LisaLeft						; si pas égale, on regarde le prochain mouvement
@@ -290,7 +289,7 @@ movSimpsons:
 				movDOWN Lisa+2, Lisa+12			; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 
 	movMaggie:				; on effectue le mouvement
-		call INCMOVSIM		; incrementation pour changer les deplacements futurs
+		RAND MOVSIM
 		MaggieRIGHT:
 			cmp MOVSIM, 4						; verification de la valeur de MOVSIM
 			JNE MaggieLeft						; si pas égale, on regarde le prochain mouvement
@@ -312,7 +311,7 @@ movSimpsons:
 				movDOWN Maggie+2, Maggie+12		; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 
 	movBarney:				; on effectue le mouvement
-		call INCMOVSIM		; incrementation pour changer les deplacements futurs
+		RAND MOVSIM
 		BarneyRIGHT:
 			cmp MOVSIM, 2						; verification de la valeur de MOVSIM
 			JNE BarneyLeft						; si pas égale, on regarde le prochain mouvement
@@ -329,12 +328,12 @@ movSimpsons:
 				movUP Barney+2, Barney+10		; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 		jmp movFlanders						; on change de simpson
 		BarneyDOWN:
-			cmp MOVSIM, 4						; verification de la valeur de MOVSIM
+			cmp MOVSIM, 4
 			JNE movFlanders						; si pas égale, on regarde le prochain mouvement
 				movDOWN Barney+2, Barney+12		; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 
 	movFlanders:				; on effectue le mouvement
-		call INCMOVSIM			; incrementation pour changer les deplacements futurs
+		RAND MOVSIM
 		FlandersRIGHT:
 			cmp MOVSIM, 2							; verification de la valeur de MOVSIM
 			JNE FlandersLeft						; si pas égale, on regarde le prochain mouvement
@@ -356,7 +355,7 @@ movSimpsons:
 				movDOWN Flanders+2, Flanders+12		; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 
 	movApu:					; on effectue le mouvement
-		call INCMOVSIM		; incrementation pour changer les deplacements futurs
+		RAND MOVSIM
 		ApuRIGHT:
 			cmp MOVSIM, 1						; verification de la valeur de MOVSIM
 			JNE ApuLeft							; si pas égale, on regarde le prochain mouvement
@@ -378,7 +377,7 @@ movSimpsons:
 				movDOWN Apu+2, Apu+12			; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 
 	movPetitPapaNoel:				; on effectue le mouvement
-		call INCMOVSIM				; incrementation pour changer les deplacements futurs
+		RAND MOVSIM
 		PetitPapaNoelRIGHT:
 			cmp MOVSIM, 2										; verification de la valeur de MOVSIM
 			JNE PetitPapaNoelLeft								; si pas égale, on regarde le prochain mouvement
@@ -400,7 +399,7 @@ movSimpsons:
 				movDOWN PetitPapaNoel+2, PetitPapaNoel+12		; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 
 	movBouleDeNeige:				; on effectue le mouvement
-		call INCMOVSIM				; incrementation pour changer les deplacements futurs
+		RAND MOVSIM
 		BouleDeNeigeRIGHT:
 			cmp MOVSIM, 2										; verification de la valeur de MOVSIM
 			JNE BouleDeNeigeLeft								; si pas égale, on regarde le prochain mouvement
@@ -422,7 +421,7 @@ movSimpsons:
 				movDOWN BouleDeNeige+2, BouleDeNeige+12			; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 
 	movKrusty:					; on effectue le mouvement
-		call INCMOVSIM			; incrementation pour changer les deplacements futurs
+		RAND MOVSIM
 		KrustyRIGHT:
 			cmp MOVSIM, 2						; verification de la valeur de MOVSIM
 			JNE KrustyLeft						; si pas égale, on regarde le prochain mouvement
@@ -444,7 +443,7 @@ movSimpsons:
 				movDOWN Krusty+2, Krusty+12		; si egale, on effectue le mouvement (s'il est possible en fonction de la zone max)
 
 	movTahitiBob:				; on effectue le mouvement
-		call INCMOVSIM			; incrementation pour changer les deplacements futurs
+		RAND MOVSIM
 		TahitiBobRIGHT:
 			cmp MOVSIM, 0							; verification de la valeur de MOVSIM
 			JNE TahitiBobLeft						; si pas égale, on regarde le prochain mouvement
@@ -471,6 +470,11 @@ movSimpsons:
 
 ret
 
+; -------------------------------
+; Verification de victoire
+; -------------------------------
+
+
 CHECKWIN:
 	push ax		; sauvegarde du registre
 
@@ -493,3 +497,49 @@ CHECKWIN:
 	pop ax		; recuperation du registre
 ret
 
+; -------------------------------
+; Reinitialisation pour le menu
+; -------------------------------
+
+
+menuSimpsonReset:
+	mov PLAYER, 152				; reinitialisation des paramètres
+		mov PLAYER+2, 96
+		mov PLAYER+4, 0
+	mov Homer, 72				; reinitialisation des paramètres
+		mov Homer+2, 40
+		mov Homer+4, 0
+	mov Marge, 200				; reinitialisation des paramètres
+		mov Marge+2, 80
+		mov Marge+4, 0
+	mov Bart, 288				; reinitialisation des paramètres
+		mov Bart+2, 128
+		mov Bart+4, 0
+	mov Lisa, 240				; reinitialisation des paramètres
+		mov Lisa+2, 40
+		mov Lisa+4, 0
+	mov Maggie, 112				; reinitialisation des paramètres
+		mov Maggie+2, 80
+		mov Maggie+4, 0
+	mov Barney, 24				; reinitialisation des paramètres
+		mov Barney+2, 64
+		mov Barney+4, 0
+	mov Flanders, 200			; reinitialisation des paramètres
+		mov Flanders+2, 112
+		mov Flanders+4, 0
+	mov Apu, 24					; reinitialisation des paramètres
+		mov Apu+2, 128
+		mov Apu+4, 0
+	mov PetitPapaNoel, 112		; reinitialisation des paramètres
+		mov PetitPapaNoel+2, 112
+		mov PetitPapaNoel+4, 0
+	mov BouleDeNeige, 240		; reinitialisation des paramètres
+		mov BouleDeNeige+2, 152
+		mov BouleDeNeige+4, 0
+	mov Krusty, 288				; reinitialisation des paramètres
+		mov Krusty+2, 64
+		mov Krusty+4, 0
+	mov TahitiBob, 72			; reinitialisation des paramètres
+		mov TahitiBob+2, 152
+		mov TahitiBob+4, 0
+ret
