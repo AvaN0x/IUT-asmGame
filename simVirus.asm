@@ -1,5 +1,14 @@
+;  __ _                                            _                
+; / _(_)_ __ ___  _ __  ___  ___  _ __   ___/\   /(_)_ __ _   _ ___ 
+; \ \| | '_ ` _ \| '_ \/ __|/ _ \| '_ \ / _ \ \ / / | '__| | | / __|
+; _\ \ | | | | | | |_) \__ \ (_) | | | | (_) \ V /| | |  | |_| \__ \
+; \__/_|_| |_| |_| .__/|___/\___/|_| |_|\___/ \_/ |_|_|   \__,_|___/
+;                |_|                                                
+; By Clément RICATTE & Valentin Azancoth
+; -> github.com/AvaN0x
+
 ;-------------------------------------------------
-	TITLE DISPLAY - programme prototype
+	TITLE DISPLAY - SimpsonoVirus
 	.286
 ;------------------------------------STACK SEGMENT
 SSEG		SEGMENT	STACK
@@ -165,6 +174,8 @@ gameMenu:
 	call menuSimpsonReset		; on donne au simpson la position voulue pour le menu
 
 	; on dessine les simpsons
+		call DrawPLAYER
+
 		DrawHomer		_YELLOW_, _LORANGE_	
 		DrawMarge		_YELLOW_, _LORANGE_	
 		DrawBart		_YELLOW_, _LORANGE_	
@@ -218,6 +229,11 @@ helpPanel:
 	STRINGOUT S_HESCAPE		; "ESCAPE to leave"
 	SETCURSOR 4, 15
 	STRINGOUT S_HCONFIRM	; "SPACE or ENTER to confirm"
+
+	mov PLAYER, 112			; x
+	mov PLAYER+2, 176		; y
+	call DrawPLAYER
+
 
 	SETCURSOR 16, 22
 	STRINGOUT S_HLEAVE		; "Press any key to leave"

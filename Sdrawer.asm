@@ -1,3 +1,13 @@
+;  __ _                                            _                
+; / _(_)_ __ ___  _ __  ___  ___  _ __   ___/\   /(_)_ __ _   _ ___ 
+; \ \| | '_ ` _ \| '_ \/ __|/ _ \| '_ \ / _ \ \ / / | '__| | | / __|
+; _\ \ | | | | | | |_) \__ \ (_) | | | | (_) \ V /| | |  | |_| \__ \
+; \__/_|_| |_| |_| .__/|___/\___/|_| |_|\___/ \_/ |_|_|   \__,_|___/
+;                |_|                                                
+; By Clément RICATTE & Valentin Azancoth
+; -> github.com/AvaN0x
+
+
 DrawPLAYER:
 	mov cx, PLAYER		; x coordinate			; PLAYER = PLAYER[0]
 	mov dx, PLAYER+2	; y coordinate			; PLAYER+2 = PLAYER[1]

@@ -1,3 +1,11 @@
+;  __ _                                            _                
+; / _(_)_ __ ___  _ __  ___  ___  _ __   ___/\   /(_)_ __ _   _ ___ 
+; \ \| | '_ ` _ \| '_ \/ __|/ _ \| '_ \ / _ \ \ / / | '__| | | / __|
+; _\ \ | | | | | | |_) \__ \ (_) | | | | (_) \ V /| | |  | |_| \__ \
+; \__/_|_| |_| |_| .__/|___/\___/|_| |_|\___/ \_/ |_|_|   \__,_|___/
+;                |_|                                                
+; By Clément RICATTE
+; -> github.com/AvaN0x
 
 CMPMEM MACRO mA, mB		; MACRO pour comparer 2 cases mémoires (mA et mB)
 	push cx		; save des registres
