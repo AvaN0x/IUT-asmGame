@@ -34,6 +34,7 @@ DSEG		SEGMENT
 	_Kspce_	EQU 39h		; SPACE
 	_KH_	EQU 23h		; H
 	_Kesc_  EQU 01h		; ESCAPE
+	_KBackspace_	EQU 0Eh		; BACKSPACE
 
 ; --------------------------
 ; Couleurs
@@ -72,22 +73,22 @@ DSEG		SEGMENT
 	PLAYER		DW	152, 96, 0
 
 				; 	x, 		y, boolean sick,   coordmax right, 	left, 	top, 	bottom
-	Homer		DW	72, 	40, 		0,				96,		8,		16,		48
-	Marge		DW	200, 	80, 		0,				208,	160,	16,		88
-	Bart		DW	288, 	128, 		0,				304,	216,	104,	136
-	Lisa		DW	240, 	40, 		0,				304,	216,	16,		48
-	Maggie		DW	112, 	80, 		0,				152,	104,	16,		88
-	Barney		DW	24, 	64, 		0,				96,		8,		56,		88
-	Flanders	DW	200, 	112, 		0,				208,	160,	104,	176
-	Apu 		DW	24, 	128, 		0,				96,		8,		104,	136
-	PetitPapaNoel	DW	112, 112, 		0,				152,	104,	104,	176
-	BouleDeNeige	DW	240, 152, 		0,				304,	216,	144,	176
-	Krusty		DW	288, 	64, 		0,				304,	216,	56,		88
-	TahitiBob	DW	72, 	152, 		0,				96,		8,		144,	176
+	Homer		DW	0, 		0, 			0,			96,		8,		16,		48
+	Marge		DW	0, 		0, 			0,			208,	160,	16,		88
+	Bart		DW	0, 		0, 			0,			304,	216,	104,	136
+	Lisa		DW	0, 		0, 			0,			304,	216,	16,		48
+	Maggie		DW	0, 		0, 			0,			152,	104,	16,		88
+	Barney		DW	0, 		0, 			0,			96,		8,		56,		88
+	Flanders	DW	0, 		0, 			0,			208,	160,	104,	176
+	Apu 		DW	0, 		0, 			0,			96,		8,		104,	136
+	PetitPapaNoel	DW	0, 	0, 			0,			152,	104,	104,	176
+	BouleDeNeige	DW	0, 	0, 			0,			304,	216,	144,	176
+	Krusty		DW	0, 		0, 			0,			304,	216,	56,		88
+	TahitiBob	DW	0, 		0, 			0,			96,		8,		144,	176
 
 	RECORDMOVE	DW	0
+	MENUSTATE	DW	0
 	MOVSIM		DW	0
-
 	timerMov	DB	0
 
 ; --------------------------
@@ -99,11 +100,12 @@ DSEG		SEGMENT
 
 	; gameMenu
 	S_MENU1		DB "Spread the virus to the SIMPSONS !", 24h
-	S_MENU2		DB "Press Enter or Space to play", 24H
-	S_MENU3		DB "Press H for the Help tab", 24H
+	S_MENU2		DB "Play", 24H
+	S_MENU3		DB "Help", 24H
+	S_MENU4		DB "Quit", 24H
 
 	S_CREDIT	DB "By github.com/AvaN0x", 24h
-	S_CREDIT2	DB "and Valentin Azancoth", 24h
+	S_CREDIT2	DB "and github.com/Valaaz", 24h
 
 	; helpPanel
 
@@ -111,7 +113,7 @@ DSEG		SEGMENT
 	S_HGOAL2	DB "every Simpsons !", 24h
 	S_HMOVE1	DB " ", 1eh, " ", "     Z", 24h
 	S_HMOVE2	DB 11h, 1fh, 10h, " or QSD to move", 24h
-	S_HESCAPE	DB "ESCAPE to leave", 24h
+	S_HESCAPE	DB "ESCAPE or BACKSPACE to leave", 24h
 	S_HCONFIRM	DB "SPACE or ENTER to confirm", 24h
 	S_HLEAVE	DB "Press any key to leave", 24h
 
@@ -157,23 +159,47 @@ gameMenu:
 	SETCURSOR 3, 6
 	STRINGOUT S_MENU1			; "Spread the virus to the SIMPSONS !"
 
-	SETCURSOR 5, 13
-	STRINGOUT S_MENU2			; "Press Enter or Space to play"
-	SETCURSOR 7, 15
-	STRINGOUT S_MENU3			; "Press H for the Help tab"
-	SETCURSOR 9, 17
-	STRINGOUT S_ESCAPE			; "Press Escape to leave"
+	SETCURSOR 18, 12
+	STRINGOUT S_MENU2			; "Play"
+	SETCURSOR 18, 14
+	STRINGOUT S_MENU3			; "Help"
+	SETCURSOR 18, 16
+	STRINGOUT S_MENU4			; "Quit"
 
 
 	SETCURSOR 18, 21
 	STRINGOUT S_CREDIT			; "By github.com/AvaN0x"
 	SETCURSOR 17, 22
-	STRINGOUT S_CREDIT2			; "and Valentin Azancoth"
+	STRINGOUT S_CREDIT2			; "and github.com/Valaaz"
 
+	cmp MENUSTATE, 0
+	je playerPosPlay
+	cmp MENUSTATE, 1
+	je playerPosHelp
+	cmp MENUSTATE, 2
+	je playerPosQuit
+	jmp endPlayerPos
 
-	call menuSimpsonReset		; on donne au simpson la position voulue pour le menu
+		playerPosPlay:
+			mov PLAYER, 128		; x
+			mov PLAYER+2, 96	; y
+		jmp endPlayerPos
+
+		playerPosHelp:
+			mov PLAYER, 128		; x
+			mov PLAYER+2, 112	; y
+		jmp endPlayerPos
+
+		playerPosQuit:
+			mov PLAYER, 128		; x
+			mov PLAYER+2, 128	; y
+		jmp endPlayerPos
+
+	endPlayerPos:
 
 	; on dessine les simpsons
+		call menuSimpsonReset		; on donne au simpson la position voulue pour le menu
+
 		call DrawPLAYER
 
 		DrawHomer		_YELLOW_, _LORANGE_	
@@ -194,20 +220,35 @@ gameMenu:
 	mov ah, 0		; fonction pour recuperer la touche
 	int 16h			; get key press
 
+
+	cmp ah, _UP_		; if key = UP
+	je menuUP			; on fait le déplacement
+	cmp ah, _KZ_		; if key = Z
+	je menuUP			; on fait le déplacement
+
+	cmp ah, _DOWN_		; if key = DOWN
+	je menuDOWN		; on fait le déplacement
+	cmp ah, _KS_		; if key = S
+	je menuDOWN		; on fait le déplacement
+
 	cmp ah, _Kent_		; if key = ENTER
-	je gameSimpsonReset		; on met fin au programme
+	je checkMenuState		; on met fin au programme
 	cmp ah, _Kspce_		; if key = ENTER
-	je gameSimpsonReset		; on met fin au programme
-
-	cmp ah, _KH_		; if key = H
-	je helpPanel		; on met fin au programme
-
-	cmp ah, _Kesc_		; if key = ESCAPE
-	je ENDPROG			; on met fin au programme
-
+	je checkMenuState		; on met fin au programme
 jmp gameMenu			; on retourne dans la boucle jusqu'a trouver une bonne touche
 
 
+; si on confirme une case du menu
+checkMenuState:
+	cmp MENUSTATE, 0
+	je gameSimpsonReset		; on peut lancer le jeu
+
+	cmp MENUSTATE, 1
+	je helpPanel			; on ouvre le panneau d'aide
+
+	cmp MENUSTATE, 2
+	je ENDPROG				; on ferme le programme
+jmp gameMenu			; cas qui ne devrait pas arriver, mais s'il arrive, on retourne dans le menu
 
 ; --------------------------
 ; helpPanel
@@ -233,7 +274,6 @@ helpPanel:
 	mov PLAYER, 112			; x
 	mov PLAYER+2, 176		; y
 	call DrawPLAYER
-
 
 	SETCURSOR 16, 22
 	STRINGOUT S_HLEAVE		; "Press any key to leave"
@@ -434,6 +474,8 @@ gameMain:
 		mov ah, 0		; fonction pour recuperer la touche
 		int 16h			; get key press
 		cmp ah, _Kesc_		; if key = ESCAPE
+		je gameMenu			; on met fin au programme
+		cmp ah, _KBackspace_		; if key = BACKSPACE  
 		je gameMenu			; on met fin au programme
 
 		cmp ah, _RIGHT_		; if key = RIGHT

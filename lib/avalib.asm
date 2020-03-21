@@ -157,8 +157,8 @@ SETGRAPHICS:
 	pop ax		; recuperation des registres
 ret
 
-;			(x, y) color in hex
 SETPIX MACRO x, y, color	
+	;		(x, y) color in hex
 	push ax		; save des registres
 	push bx		;
 	push cx		;
@@ -245,11 +245,7 @@ RAND MACRO target
 	div  cx       ; here dx contains the remainder of the division - from 0 to 9
 	
 	mov target, dx
-	SETCURSOR 2, 24
-	PRINTNUM target
-
 ENDM
-
 
 SOUND MACRO frequency, duration
 	local pause1, pause2

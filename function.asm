@@ -8,6 +8,30 @@
 ; -> github.com/AvaN0x
 
 
+; ---------------------
+; Controle du menu
+; ---------------------
+menuUP:
+	cmp MENUSTATE, 0	; si on est pas a la limite
+	jne allowedMenuUP			; on peut monter
+	mov MENUSTATE, 2	; sinon on va tout en bas
+	jmp gameMenu
+	
+	allowedMenuUP:
+	dec MENUSTATE 		; decremente (monte)
+jmp gameMenu
+
+menuDOWN:
+	cmp MENUSTATE, 2	; si on est pas a la limite
+	jne allowedMenuDOWN			; on peut descendre
+	mov MENUSTATE, 0	; sinon on va tout en haut
+	jmp gameMenu
+	
+	allowedMenuDOWN:
+	inc MENUSTATE 		; incremente (descend)
+jmp gameMenu
+
+
 ; ------------------------------------------------------------
 ; Son lorsqu'un simpson devient malade
 ; ------------------------------------------------------------
@@ -504,23 +528,20 @@ ret
 ; Reinitialisation pour le menu
 ; -------------------------------
 menuSimpsonReset:
-	mov PLAYER, 24				; reinitialisation des paramètres
-		mov PLAYER+2, 104
-
 	mov Homer, 68				; reinitialisation des paramètres
-		mov Homer+2, 24
+		mov Homer+2, 34
 		mov Homer+4, 0
 	mov Marge, 84				; reinitialisation des paramètres
-		mov Marge+2, 24
+		mov Marge+2, 32
 		mov Marge+4, 0
 	mov Bart, 100				; reinitialisation des paramètres
-		mov Bart+2, 24
+		mov Bart+2, 30
 		mov Bart+4, 0
 	mov Lisa, 116				; reinitialisation des paramètres
-		mov Lisa+2, 24
+		mov Lisa+2, 28
 		mov Lisa+4, 0
 	mov Maggie, 132				; reinitialisation des paramètres
-		mov Maggie+2, 24
+		mov Maggie+2, 26
 		mov Maggie+4, 0
 	mov PetitPapaNoel, 148		; reinitialisation des paramètres
 		mov PetitPapaNoel+2, 24
@@ -529,18 +550,18 @@ menuSimpsonReset:
 		mov BouleDeNeige+2, 24
 		mov BouleDeNeige+4, 0
 	mov Apu, 180					; reinitialisation des paramètres
-		mov Apu+2, 24
+		mov Apu+2, 26
 		mov Apu+4, 0
 	mov Barney, 196				; reinitialisation des paramètres
-		mov Barney+2, 24
+		mov Barney+2, 28
 		mov Barney+4, 0
 	mov Flanders, 212			; reinitialisation des paramètres
-		mov Flanders+2, 24
+		mov Flanders+2, 30
 		mov Flanders+4, 0
 	mov Krusty, 228				; reinitialisation des paramètres
-		mov Krusty+2, 24
+		mov Krusty+2, 32
 		mov Krusty+4, 0
 	mov TahitiBob, 244			; reinitialisation des paramètres
-		mov TahitiBob+2, 24
+		mov TahitiBob+2, 34
 		mov TahitiBob+4, 0
 ret
