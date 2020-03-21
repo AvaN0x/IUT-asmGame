@@ -225,10 +225,10 @@ DELAY MACRO time
 	push cx		;
 	push dx		;
 
-    mov  CX, 0h
-    mov  DX, time
-    mov  AH, 86h
-    int  15h
+    mov  cx, 0h		; cx suivit de dx correspond au même nombre (cx est une dizaine de plus de dx)
+    mov  dx, time	; on mets le temps en paramètre dans dx
+    mov  ah, 86h	; fonction
+    int  15h		; puis interruption pour le délai
 
 	pop dx		; recuperation des registres
 	pop cx		;
@@ -236,15 +236,15 @@ DELAY MACRO time
 ENDM
 
 RAND MACRO target
-	MOV AH, 00h  ; interrupts to get system time        
-	INT 1AH      ; CX:DX now hold number of clock ticks since midnight      
+	MOV AH, 00h		; recuperation du temps du jeu       
+	INT 1AH			; CX:DX contient maintenant le temps depuis minuit
 
-	mov  ax, dx
-	xor  dx, dx
-	mov  cx, 10    
-	div  cx       ; here dx contains the remainder of the division - from 0 to 9
+	mov  ax, dx		; deplacement de dx dans ax
+	xor  dx, dx		; reset la valeur de dx
+	mov  cx, 10    	; on mets 10 dans cx, pour faire la division par 10
+	div  cx			; dx contient maintenant le reste de la division par 10
 	
-	mov target, dx
+	mov target, dx	; la variable récupère la valeur de dx
 ENDM
 
 SOUND MACRO frequency, duration

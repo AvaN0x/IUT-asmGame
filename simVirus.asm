@@ -156,6 +156,7 @@ gameMenu:
 	CLEARSCREEN	_LORANGE_		; on nettoie l'écran entièrement à chaque tour
 	FILLSCREEN 1, 1, 38, 23, _BLACK_		; on remplis la zone visuelle
 
+
 	SETCURSOR 3, 6
 	STRINGOUT S_MENU1			; "Spread the virus to the SIMPSONS !"
 
@@ -473,6 +474,7 @@ gameMain:
 
 		mov ah, 0		; fonction pour recuperer la touche
 		int 16h			; get key press
+		
 		cmp ah, _Kesc_		; if key = ESCAPE
 		je gameMenu			; on met fin au programme
 		cmp ah, _KBackspace_		; if key = BACKSPACE  
@@ -541,16 +543,41 @@ winPanel:
 	CLEARSCREEN	_GREEN_		; on nettoie l'écran entièrement à chaque tour
 	FILLSCREEN 1, 1, 38, 23, _BLACK_		; on remplis la zone visuelle
 
-	SETCURSOR 15, 5
+		call menuSimpsonReset		; on donne au simpson la position voulue pour le menu
+		
+		mov PLAYER, 112		; x
+		mov PLAYER+2, 64	; y
+		call DrawPLAYER
+		
+		mov PLAYER, 200		; x
+		mov PLAYER+2, 64	; y
+		call DrawPLAYER
+
+		DrawHomer		_LGREEN_, _GREEN_	
+		DrawMarge		_LGREEN_, _GREEN_	
+		DrawBart		_LGREEN_, _GREEN_	
+		DrawLisa		_LGREEN_, _GREEN_	
+		DrawMaggie		_LGREEN_, _GREEN_	
+		DrawBarney		_LGREEN_, _GREEN_	
+		DrawFlanders	_LGREEN_, _GREEN_	
+		DrawApu			_GREEN_	
+		DrawPetitPapaNoel	_LGREEN_, _GREEN_	
+		DrawBouleDeNeige	_LGREEN_, _GREEN_	
+		DrawKrusty		_LGREEN_, _GREEN_	
+		DrawTahitiBob	_LGREEN_, _GREEN_	
+
+
+
+	SETCURSOR 15, 6
 	stringout S_WIN1		; "Victory in"
-	SETCURSOR 18, 7
+	SETCURSOR 18, 8
 	PRINTNUM player+4		; affichage nombre de deplacement
-	SETCURSOR 17, 9
+	SETCURSOR 17, 10
 	stringout S_WIN2		; "moves"
 
 	CMP RECORDMOVE, 0					; si le record vaut 0 (set de base)
 	jne CheckRecordLess
-		SETCURSOR 5, 14
+		SETCURSOR 5, 15
 		STRINGOUT S_WINRECORD1		; "You have set your new record !"
 		mov ax, PLAYER+4
 		mov RECORDMOVE, ax		; on change le record
@@ -558,7 +585,7 @@ winPanel:
 	CheckRecordLess:
 	CMPMEM PLAYER+4, RECORDMOVE		; si le nombre de deplacement est inferieur au record
 	jge winPanelContinue
-		SETCURSOR 6, 13
+		SETCURSOR 6, 15
 		STRINGOUT S_WINRECORD2	; "You beated your old record!"
 		mov ax, PLAYER+4
 		mov RECORDMOVE, ax		; on change le record
@@ -566,7 +593,15 @@ winPanel:
 	winPanelContinue:
 		SETCURSOR 4, 22
 		stringout S_ENTER		; "Press Enter or Space to continue"
+		DELAY 0ffffh
+		SOUND 2280, 2	;	C	523.25hz
+		SOUND 2031, 1	;	D	587.33hz
+		SOUND 2280, 2	;	C	523.25hz
+		SOUND 2031, 1	;	D	587.33hz
+		SOUND 2280, 2	;	C	523.25hz
+		SOUND 2031, 1	;	D	587.33hz
 
+	winPanelAskConfirm:
 		mov ah, 0		; fonction pour recuperer la touche
 		int 16h			; get key press
 
@@ -575,7 +610,7 @@ winPanel:
 		cmp ah, _Kspce_		; if key = ESPACE
 		je gameMenu		; on retourne au menu
 
-	jmp winPanelContinue			; on retourne dans la boucle jusqu'a trouver la bonne touche
+	jmp winPanelAskConfirm			; on retourne dans la boucle jusqu'a trouver la bonne touche
 
 ; ;retour
 	RET

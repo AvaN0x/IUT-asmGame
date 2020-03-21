@@ -518,7 +518,7 @@ CHECKWIN:
 	add ax, BouleDeNeige+4
 	add ax, Krusty+4
 	add ax, TahitiBob+4
-	cmp ax, 12				; on additionne tous les boolean
+	cmp ax, 1				; on additionne tous les boolean
 	JE winPanel				; et on regarde si le resultat est égale au nombre de simpson
 
 	pop ax		; recuperation du registre
@@ -530,38 +530,26 @@ ret
 menuSimpsonReset:
 	mov Homer, 68				; reinitialisation des paramètres
 		mov Homer+2, 34
-		mov Homer+4, 0
 	mov Marge, 84				; reinitialisation des paramètres
 		mov Marge+2, 32
-		mov Marge+4, 0
 	mov Bart, 100				; reinitialisation des paramètres
 		mov Bart+2, 30
-		mov Bart+4, 0
 	mov Lisa, 116				; reinitialisation des paramètres
 		mov Lisa+2, 28
-		mov Lisa+4, 0
 	mov Maggie, 132				; reinitialisation des paramètres
 		mov Maggie+2, 26
-		mov Maggie+4, 0
 	mov PetitPapaNoel, 148		; reinitialisation des paramètres
 		mov PetitPapaNoel+2, 24
-		mov PetitPapaNoel+4, 0
 	mov BouleDeNeige, 164		; reinitialisation des paramètres
 		mov BouleDeNeige+2, 24
-		mov BouleDeNeige+4, 0
-	mov Apu, 180					; reinitialisation des paramètres
+	mov Apu, 180				; reinitialisation des paramètres
 		mov Apu+2, 26
-		mov Apu+4, 0
 	mov Barney, 196				; reinitialisation des paramètres
 		mov Barney+2, 28
-		mov Barney+4, 0
 	mov Flanders, 212			; reinitialisation des paramètres
 		mov Flanders+2, 30
-		mov Flanders+4, 0
 	mov Krusty, 228				; reinitialisation des paramètres
 		mov Krusty+2, 32
-		mov Krusty+4, 0
 	mov TahitiBob, 244			; reinitialisation des paramètres
 		mov TahitiBob+2, 34
-		mov TahitiBob+4, 0
 ret
