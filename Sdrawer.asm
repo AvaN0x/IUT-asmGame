@@ -7,107 +7,251 @@
 ; By Clément RICATTE & Valentin Azancoth
 ; -> github.com/AvaN0x
 
+drawPLAYER:
+	mov cx, PLAYER
+	mov dx, PLAYER+2
+	mov ah, 0ch
+	mov bh, 1
 
-DrawPLAYER:
-	mov cx, PLAYER		; x coordinate			; PLAYER = PLAYER[0]
-	mov dx, PLAYER+2	; y coordinate			; PLAYER+2 = PLAYER[1]
-	mov ah, 0ch			; procedure pour pixel
-	mov bh, 1    		; page no - critical while animating
- 
-	; ligne 0
-	; ligne 1
-		add dx, 1
-		push cx
-			mov al, _DPURPLE_
-			int 10h 			; interruption correspondante	; (1,0)
-			add cx, 1
-			int 10h 			; interruption correspondante	; (1,1)
-			add cx, 5
-			int 10h 			; interruption correspondante	; (1,6)
-			add cx, 1
-			int 10h 			; interruption correspondante	; (1,7)
-		pop cx
-	; ligne 2
-		add dx, 1
-		push cx
-			mov al, _PURPLE_
-			int 10h 			; interruption correspondante	; (2,0)
-			add cx, 1
-			mov al, _DPURPLE_
-			int 10h 			; interruption correspondante	; (2,1)
-			add cx, 1
-			int 10h 			; interruption correspondante	; (2,2)
-			add cx, 3
-			mov al, _DPURPLE_
-			int 10h 			; interruption correspondante	; (2,5)
-			add cx, 1
-			int 10h 			; interruption correspondante	; (2,6)
-			add cx, 1
-			mov al, _PURPLE_
-			int 10h 			; interruption correspondante	; (2,7)
-		pop cx
-	; ligne 3
-		add dx, 1
-		push cx
-			mov al, _PURPLE_
-			int 10h 			; interruption correspondante	; (3,0)
-			add cx, 1
-			int 10h 			; interruption correspondante	; (3,1)
-			add cx, 1
-			mov al, _DPURPLE_
-			int 10h 			; interruption correspondante	; (3,2)
-			add cx, 1
-			int 10h 			; interruption correspondante	; (3,3)
-			add cx, 1
-			int 10h 			; interruption correspondante	; (3,4)
-			add cx, 1
-			int 10h 			; interruption correspondante	; (3,5)
-			add cx, 1
-			mov al, _PURPLE_
-			int 10h 			; interruption correspondante	; (3,6)
-		pop cx
-	; ligne 4
-		add dx, 1
-		push cx
-			add cx, 1
-			mov al, _PURPLE_
-			int 10h 			; interruption correspondante	; (4,1)
-			add cx, 1
-			mov al, _DPURPLE_
-			int 10h 			; interruption correspondante	; (4,2)
-			add cx, 1
-			mov al, _LPURPLE_
-			int 10h 			; interruption correspondante	; (4,3)
-			add cx, 1
-			mov al, _DPURPLE_
-			int 10h 			; interruption correspondante	; (4,4)
-			add cx, 1
-			mov al, _LPURPLE_
-			int 10h 			; interruption correspondante	; (4,5)
-		pop cx
-	; ligne 5
-		add dx, 1
-		push cx
-			add cx, 2
-			mov al, _DPURPLE_
-			int 10h 			; interruption correspondante	; (5,2)
-			add cx, 1
-			int 10h 			; interruption correspondante	; (5,3)
-			add cx, 1
-			int 10h 			; interruption correspondante	; (5,4)
-			add cx, 1
-			int 10h 			; interruption correspondante	; (5,5)
-		pop cx
-	; ligne 6
-		add dx, 1
-		push cx
-			add cx, 2
-			mov al, _DPURPLE_
-			int 10h 			; interruption correspondante	; (6,2)
-			add cx, 2
-			int 10h 			; interruption correspondante	; (6,4)
-		pop cx
-	; ligne 7
+	cmp PLAYER+6, 3
+	jg drawPlayer1
+
+		; colonne 0
+		add cx, 1
+		push dx
+			add  dx, 1
+			mov al, 080h
+			int 10h				; (0-1)
+			add  dx, 1
+			mov al, 06Dh
+			int 10h				; (0-2)
+			add  dx, 1
+			mov al, 06Dh
+			int 10h				; (0-3)
+		pop dx
+		; colonne 1
+		add cx, 1
+		push dx
+			add  dx, 1
+			mov al, 080h
+			int 10h				; (1-1)
+			add  dx, 1
+			mov al, 080h
+			int 10h				; (1-2)
+			add  dx, 1
+			mov al, 06Dh
+			int 10h				; (1-3)
+			add  dx, 1
+			mov al, 06Dh
+			int 10h				; (1-4)
+		pop dx
+		; colonne 2
+		add cx, 1
+		push dx
+			add  dx, 2
+			mov al, 080h
+			int 10h				; (2-2)
+			add  dx, 1
+			mov al, 080h
+			int 10h				; (2-3)
+			add  dx, 1
+			mov al, 080h
+			int 10h				; (2-4)
+			add  dx, 1
+			mov al, 080h
+			int 10h				; (2-5)
+			add  dx, 1
+			mov al, 080h
+			int 10h				; (2-6)
+		pop dx
+		; colonne 3
+		add cx, 1
+		push dx
+			add  dx, 3
+			mov al, 080h
+			int 10h				; (3-3)
+			add  dx, 1
+			mov al, 026h
+			int 10h				; (3-4)
+			add  dx, 1
+			mov al, 081h
+			int 10h				; (3-5)
+		pop dx
+		; colonne 4
+		add cx, 1
+		push dx
+			add  dx, 3
+			mov al, 081h
+			int 10h				; (4-3)
+			add  dx, 1
+			mov al, 081h
+			int 10h				; (4-4)
+			add  dx, 1
+			mov al, 081h
+			int 10h				; (4-5)
+			add  dx, 1
+			mov al, 081h
+			int 10h				; (4-6)
+		pop dx
+		; colonne 5
+		add cx, 1
+		push dx
+			add  dx, 2
+			mov al, 081h
+			int 10h				; (5-2)
+			add  dx, 1
+			mov al, 081h
+			int 10h				; (5-3)
+			add  dx, 1
+			mov al, 026h
+			int 10h				; (5-4)
+			add  dx, 1
+			mov al, 081h
+			int 10h				; (5-5)
+		pop dx
+		; colonne 6
+		add cx, 1
+		push dx
+			add  dx, 1
+			mov al, 081h
+			int 10h				; (6-1)
+			add  dx, 1
+			mov al, 081h
+			int 10h				; (6-2)
+			add  dx, 1
+			mov al, 085h
+			int 10h				; (6-3)
+		pop dx
+		; colonne 7
+		add cx, 1
+		push dx
+			add  dx, 1
+			mov al, 081h
+			int 10h				; (7-1)
+			add  dx, 1
+			mov al, 085h
+			int 10h				; (7-2)
+		pop  dx
+	
+	jmp drawPlayerINC
+
+
+	drawPlayer1:
+		; colonne 0
+		add cx, 1
+		push dx
+			add  dx, 2
+			mov al, 080h
+			int 10h				; (0-2)
+			add  dx, 1
+			mov al, 06Dh
+			int 10h				; (0-3)
+		pop dx
+		; colonne 1
+		add cx, 1
+		push dx
+			add  dx, 2
+			mov al, 080h
+			int 10h				; (1-2)
+			add  dx, 1
+			mov al, 06Dh
+			int 10h				; (1-3)
+		pop dx
+		; colonne 2
+		add cx, 1
+		push dx
+			add  dx, 1
+			mov al, 080h
+			int 10h				; (2-1)
+			add  dx, 1
+			mov al, 080h
+			int 10h				; (2-2)
+			add  dx, 1
+			mov al, 080h
+			int 10h				; (2-3)
+			add  dx, 1
+			mov al, 080h
+			int 10h				; (2-4)
+			add  dx, 1
+			mov al, 080h
+			int 10h				; (2-5)
+		pop dx
+		; colonne 3
+		add cx, 1
+		push dx
+			add  dx, 2
+			mov al, 080h
+			int 10h				; (3-2)
+			add  dx, 1
+			mov al, 026h
+			int 10h				; (3-3)
+			add  dx, 1
+			mov al, 080h
+			int 10h				; (3-4)
+		pop dx
+		; colonne 4
+		add cx, 1
+		push dx
+			add  dx, 2
+			mov al, 081h
+			int 10h				; (4-2)
+			add  dx, 1
+			mov al, 081h
+			int 10h				; (4-3)
+			add  dx, 1
+			mov al, 081h
+			int 10h				; (4-4)
+			add  dx, 1
+			mov al, 081h
+			int 10h				; (4-5)
+		pop dx
+		; colonne 5
+		add cx, 1
+		push dx
+			add  dx, 1
+			mov al, 081h
+			int 10h				; (5-1)
+			add  dx, 1
+			mov al, 081h
+			int 10h				; (5-2)
+			add  dx, 1
+			mov al, 026h
+			int 10h				; (5-3)
+			add  dx, 1
+			mov al, 081h
+			int 10h				; (5-4)
+		pop dx
+		; colonne 6
+		add cx, 1
+		push dx
+			add  dx, 2
+			mov al, 081h
+			int 10h				; (6-2)
+			add  dx, 1
+			mov al, 085h
+			int 10h				; (6-3)
+		pop dx
+		; colonne 7
+		add cx, 1
+		push dx
+			add  dx, 2
+			mov al, 081h
+			int 10h				; (7-2)
+			add  dx, 1
+			mov al, 085h
+			int 10h				; (7-3)
+		pop  dx
+
+	drawPlayerINC:
+		cmp PLAYER+6, 8					; si on est pas a la limite
+		jne allowedDrawPlayerINC		; on peut incrémenter
+		mov PLAYER+6, 0					; sinon on remet a 0
+		jmp drawPLAYEREND
+		
+		allowedDrawPlayerINC:
+		inc PLAYER+6 		; incremente
+
+	drawPLAYEREND:
 ret
 
 DrawHomer MACRO LColor, NColor      ; LIGHT color and Normal color

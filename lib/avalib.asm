@@ -15,7 +15,16 @@ CMPMEM MACRO mA, mB		; MACRO pour comparer 2 cases mémoires (mA et mB)
 
 	pop cx		; recuperation des registres
 ENDM
- 
+
+MOVMEM MACRO mA, mB		; MACRO pour comparer mov entre 2 memoires
+	push cx		; save des registres
+
+	mov cx, mB
+	mov mA, cx
+
+	pop cx		; recuperation des registres
+ENDM
+
 SETCURSOR MACRO col, row
 	push ax		; save des registres
 	push bx		;

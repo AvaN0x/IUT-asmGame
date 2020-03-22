@@ -69,8 +69,8 @@ DSEG		SEGMENT
 ; --------------------------
 ; Variables
 ; --------------------------
-					; x, y, nbmove
-	PLAYER		DW	152, 96, 0
+					; x, y, nbmove,	animation stade
+	PLAYER		DW	152, 96, 0, 	0
 
 				; 	x, 		y, boolean sick,   coordmax right, 	left, 	top, 	bottom
 	Homer		DW	0, 		0, 			0,			96,		8,		16,		48
@@ -90,6 +90,8 @@ DSEG		SEGMENT
 	MENUSTATE	DW	0
 	MOVSIM		DW	0
 	timerMov	DB	0
+
+	gamePosSick	DW	4
 
 ; --------------------------
 ; Texts
@@ -156,7 +158,7 @@ gameMenu:
 	CLEARSCREEN	_LORANGE_		; on nettoie l'écran entièrement à chaque tour
 	FILLSCREEN 1, 1, 38, 23, _BLACK_		; on remplis la zone visuelle
 
-
+	
 	SETCURSOR 3, 6
 	STRINGOUT S_MENU1			; "Spread the virus to the SIMPSONS !"
 
@@ -288,6 +290,8 @@ jmp gameMenu
 ; --------------------------
 
 gameSimpsonReset:
+	mov gamePosSick, 4
+
 	mov PLAYER, 152				; reinitialisation des paramètres
 		mov PLAYER+2, 96
 		mov PLAYER+4, 0
@@ -465,8 +469,8 @@ gameMain:
 
 		ENDCheckSick:
 
-		call DrawPLAYER
-
+		; call DrawPLAYER
+		call drawplayer
 
 		mov ah, 01h		; fonction pour verifier si une touche est enfoncée
 		int 16h			; get key press
