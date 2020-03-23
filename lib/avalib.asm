@@ -7,6 +7,7 @@
 ; By Clément RICATTE
 ; -> github.com/AvaN0x
 
+
 CMPMEM MACRO mA, mB		; MACRO pour comparer 2 cases mémoires (mA et mB)
 	push cx		; save des registres
 
@@ -47,7 +48,7 @@ SAUTLIGNE:
 	push ax		; save des registres
 	push dx		;
 
-	mov AH,2			; 	affichage caractere				\
+	mov AH, 2			; 	affichage caractere				\
 	mov dl, 13			;	charge du caractère 13			|	caractère en fonction des machines : \n = 13 suivit de 10 sous Windows (0D 0A)
 	int 21H				;	charge l'interruption			|	
 	mov dl, 10			;	charge du caractère 10 = \n		|	saut de ligne
@@ -74,6 +75,7 @@ ENDM
 
 PRINTNUM MACRO num
 	local load, print, end
+
 	push ax		; save des registres
 	push bx		;
 	push cx		;
@@ -106,7 +108,7 @@ PRINTNUM MACRO num
 		add dx, '0' 	; transformation en ASCII
 		mov ah, 02h		; print un caractère
 		int 21h
-		dec cx 			; decrease le nombre de chiffres 
+		dec cx 			; décrémente le nombre de chiffres 
 		jmp print
 	END: 
 
@@ -245,50 +247,56 @@ DELAY MACRO time
 ENDM
 
 RAND MACRO target
-	MOV AH, 00h		; recuperation du temps du jeu       
-	INT 1AH			; CX:DX contient maintenant le temps depuis minuit
+	push ax		; save des registres
+	push cx		;
+	push dx		;
+
+	mov ah, 00h		; recuperation du temps du jeu       
+	int 1Ah			; CX:DX contient maintenant le temps depuis minuit
 
 	mov  ax, dx		; deplacement de dx dans ax
-	xor  dx, dx		; reset la valeur de dx
+	mov dx, 0		; reset la valeur de dx
 	mov  cx, 10    	; on mets 10 dans cx, pour faire la division par 10
 	div  cx			; dx contient maintenant le reste de la division par 10
 	
 	mov target, dx	; la variable récupère la valeur de dx
+
+	pop dx		; recuperation des registres
+	pop cx		;
+	pop ax		;
 ENDM
 
 SOUND MACRO frequency, duration
-	local pause1, pause2
+	local pause
 
 	push ax		; save des registres
 	push bx		;
 	push cx		;
 	push dx		;
 
-		mov     al, 182         ; Prepare the speaker for the
-        out     43h, al         ;  note.
-        ; mov     ax, 4560        ; Frequency number (in decimal) for middle C.
-        mov     ax, frequency        ; Frequency number (in decimal) for middle C.
+		mov al, 182			; On prepare les hauts-parleurs pour
+		out 43h, al			; la note
+		mov ax, frequency	; Frequency number (en decimal)
 
-        out     42h, al         ; Output low byte.
-        mov     al, ah          ; Output high byte.
-        out     42h, al 
-        in      al, 61h         ; Turn on note (get value from port 61h).
-		
-        or      al, 00000011b   ; Set bits 1 and 0.
-        out     61h, al         ; Send new value.
-        ; mov     bx, 25         ; Pause for duration of note.
-		mov		bx, duration
-	pause1:
-			mov     cx, 65535
-	pause2:
-        dec     cx
-        jne     pause2
-        dec     bx
-        jne     pause1
-        in      al, 61h         ; Turn off note (get value from
-                                ;  port 61h).
-        and     al, 11111100b   ; Reset bits 1 and 0.
-        out     61h, al         ; Send new value.
+		out 42h, al         ; Output low byte
+		mov al, ah          
+		out 42h, al			; Output high byte
+
+		; pour faire un son, on doit set les bits 0 et 1 du port 61h à 1
+		mov al, 61h			; on récupère la valeur du port
+		or al, 00000011b	; on set les bits dans al
+		out 61h, al         ; on renvoit al au port 61h
+
+		mov cx, duration	; on mets la valeur de la  durée dans cx
+		pause:
+			DELAY 07fffh	; plus longue pause sur le jeu
+		dec cx				; on décrémente cx
+		jne pause			; si cx n'est pas égal a 0, on retourne a pause
+
+		; on doit remettre les bits à leurs valeurs initiales 
+		mov al, 61h			; on récupère la valeur du port
+		and al, 11111100b	; on reset les bits dans al
+		out 61h, al			; on renvoit al au port 61h
 
 	pop dx		; recuperation des registres
 	pop cx		;

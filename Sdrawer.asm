@@ -6,6 +6,7 @@
 ;                |_|                                                
 ; By Clément RICATTE & Valentin Azancoth
 ; -> github.com/AvaN0x
+; -> github.com/Valaaz
 
 drawPLAYER:
 	mov cx, PLAYER
@@ -26,7 +27,6 @@ drawPLAYER:
 			mov al, 06Dh
 			int 10h				; (0-2)
 			add  dx, 1
-			mov al, 06Dh
 			int 10h				; (0-3)
 		pop dx
 		; colonne 1
@@ -36,13 +36,11 @@ drawPLAYER:
 			mov al, 080h
 			int 10h				; (1-1)
 			add  dx, 1
-			mov al, 080h
 			int 10h				; (1-2)
 			add  dx, 1
 			mov al, 06Dh
 			int 10h				; (1-3)
 			add  dx, 1
-			mov al, 06Dh
 			int 10h				; (1-4)
 		pop dx
 		; colonne 2
@@ -52,16 +50,12 @@ drawPLAYER:
 			mov al, 080h
 			int 10h				; (2-2)
 			add  dx, 1
-			mov al, 080h
 			int 10h				; (2-3)
 			add  dx, 1
-			mov al, 080h
 			int 10h				; (2-4)
 			add  dx, 1
-			mov al, 080h
 			int 10h				; (2-5)
 			add  dx, 1
-			mov al, 080h
 			int 10h				; (2-6)
 		pop dx
 		; colonne 3
@@ -84,13 +78,10 @@ drawPLAYER:
 			mov al, 081h
 			int 10h				; (4-3)
 			add  dx, 1
-			mov al, 081h
 			int 10h				; (4-4)
 			add  dx, 1
-			mov al, 081h
 			int 10h				; (4-5)
 			add  dx, 1
-			mov al, 081h
 			int 10h				; (4-6)
 		pop dx
 		; colonne 5
@@ -100,7 +91,6 @@ drawPLAYER:
 			mov al, 081h
 			int 10h				; (5-2)
 			add  dx, 1
-			mov al, 081h
 			int 10h				; (5-3)
 			add  dx, 1
 			mov al, 026h
@@ -116,7 +106,6 @@ drawPLAYER:
 			mov al, 081h
 			int 10h				; (6-1)
 			add  dx, 1
-			mov al, 081h
 			int 10h				; (6-2)
 			add  dx, 1
 			mov al, 085h
@@ -164,16 +153,12 @@ drawPLAYER:
 			mov al, 080h
 			int 10h				; (2-1)
 			add  dx, 1
-			mov al, 080h
 			int 10h				; (2-2)
 			add  dx, 1
-			mov al, 080h
 			int 10h				; (2-3)
 			add  dx, 1
-			mov al, 080h
 			int 10h				; (2-4)
 			add  dx, 1
-			mov al, 080h
 			int 10h				; (2-5)
 		pop dx
 		; colonne 3
@@ -196,13 +181,10 @@ drawPLAYER:
 			mov al, 081h
 			int 10h				; (4-2)
 			add  dx, 1
-			mov al, 081h
 			int 10h				; (4-3)
 			add  dx, 1
-			mov al, 081h
 			int 10h				; (4-4)
 			add  dx, 1
-			mov al, 081h
 			int 10h				; (4-5)
 		pop dx
 		; colonne 5
@@ -212,7 +194,6 @@ drawPLAYER:
 			mov al, 081h
 			int 10h				; (5-1)
 			add  dx, 1
-			mov al, 081h
 			int 10h				; (5-2)
 			add  dx, 1
 			mov al, 026h
@@ -282,13 +263,10 @@ DrawHomer MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (1-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (1-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (1-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (1-4)
 		add  dx, 1
 		mov al, 01Eh
@@ -297,26 +275,21 @@ DrawHomer MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 035h
 		int 10h				; (1-6)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (1-7)
 	pop dx
 	; colonne 2
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (2-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-2)
 		add  dx, 1
 		mov al, 059h
 		int 10h				; (2-3)
 		add  dx, 1
-		mov al, 059h
 		int 10h				; (2-4)
 		add  dx, 1
 		mov al, 01Eh
@@ -325,17 +298,14 @@ DrawHomer MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 035h
 		int 10h				; (2-6)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (2-7)
 	pop dx
 	; colonne 3
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (3-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-1)
 		add  dx, 1
 		mov al, 000h
@@ -344,7 +314,6 @@ DrawHomer MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 059h
 		int 10h				; (3-3)
 		add  dx, 1
-		mov al, 059h
 		int 10h				; (3-4)
 		add  dx, 1
 		mov al, 01Eh
@@ -356,14 +325,11 @@ DrawHomer MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 4
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (4-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-2)
 		add  dx, 1
 		mov al, 059h
@@ -403,7 +369,6 @@ DrawHomer MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 0DFh
 		int 10h				; (5-6)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (5-7)
 	pop dx
 	; colonne 6
@@ -445,13 +410,10 @@ DrawHomer MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (1-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (1-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (1-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (1-4)
 		add  dx, 1
 		mov al, 01Eh
@@ -460,26 +422,21 @@ DrawHomer MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 035h
 		int 10h				; (1-6)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (1-7)
 	pop dx
 	; colonne 2
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (2-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-2)
 		add  dx, 1
 		mov al, 059h
 		int 10h				; (2-3)
 		add  dx, 1
-		mov al, 059h
 		int 10h				; (2-4)
 		add  dx, 1
 		mov al, 01Eh
@@ -488,17 +445,14 @@ DrawHomer MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 035h
 		int 10h				; (2-6)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (2-7)
 	pop dx
 	; colonne 3
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (3-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-1)
 		add  dx, 1
 		mov al, 000h
@@ -507,7 +461,6 @@ DrawHomer MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 059h
 		int 10h				; (3-3)
 		add  dx, 1
-		mov al, 059h
 		int 10h				; (3-4)
 		add  dx, 1
 		mov al, 01Eh
@@ -519,20 +472,16 @@ DrawHomer MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 4
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (4-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-2)
 		add  dx, 1
 		mov al, 059h
 		int 10h				; (4-3)
 		add  dx, 1
-		mov al, 059h
 		int 10h				; (4-4)
 		add  dx, 1
 		mov al, 01Eh
@@ -557,16 +506,13 @@ DrawHomer MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 059h
 		int 10h				; (5-3)
 		add  dx, 1
-		mov al, 059h
 		int 10h				; (5-4)
 		add  dx, 1
-		mov al, 059h
 		int 10h				; (5-5)
 		add  dx, 1
 		mov al, 0DFh
 		int 10h				; (5-6)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (5-7)
 	pop dx
 	; colonne 6
@@ -617,7 +563,6 @@ DrawMarge MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 035h
 		int 10h				; (0-1)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (0-2)
 		add  dx, 4
 		mov al, LColor
@@ -626,17 +571,13 @@ DrawMarge MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 1
 	add cx, 1
 	push dx
-
 		mov al, 035h
 		int 10h				; (1-0)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (1-1)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (1-2)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (1-3)
 		add  dx, 2
 		mov al, LColor
@@ -645,20 +586,16 @@ DrawMarge MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 2
 	add cx, 1
 	push dx
-
 		mov al, 035h
 		int 10h				; (2-0)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (2-1)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (2-2)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (2-3)
 		add  dx, 2
-		mov al, LColor
 		int 10h				; (2-5)
 		add  dx, 1
 		mov al, 031h
@@ -670,23 +607,18 @@ DrawMarge MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 3
 	add cx, 1
 	push dx
-
 		mov al, 035h
 		int 10h				; (3-0)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (3-1)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (3-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-5)
 		add  dx, 1
 		mov al, 031h
@@ -698,7 +630,6 @@ DrawMarge MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 4
 	add cx, 1
 	push dx
-
 		mov al, 035h
 		int 10h				; (4-0)
 		add  dx, 1
@@ -711,10 +642,8 @@ DrawMarge MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (4-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-5)
 		add  dx, 1
 		mov al, 031h
@@ -730,13 +659,10 @@ DrawMarge MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (5-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-4)
 		add  dx, 1
 		mov al, NColor
@@ -784,7 +710,6 @@ DrawMarge MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (1-3)
 		add  dx, 2
-		mov al, LColor
 		int 10h				; (1-5)
 	pop dx
 	; colonne 2
@@ -794,16 +719,12 @@ DrawMarge MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (2-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-5)
 		add  dx, 1
 		mov al, 031h
@@ -815,7 +736,6 @@ DrawMarge MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 3
 	add cx, 1
 	push dx
-
 		mov al, 035h
 		int 10h				; (3-0)
 		add  dx, 1
@@ -828,10 +748,8 @@ DrawMarge MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (3-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-5)
 		add  dx, 1
 		mov al, 031h
@@ -843,23 +761,18 @@ DrawMarge MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 4
 	add cx, 1
 	push dx
-
 		mov al, 035h
 		int 10h				; (4-0)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (4-1)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (4-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-5)
 		add  dx, 1
 		mov al, 031h
@@ -871,14 +784,11 @@ DrawMarge MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 5
 	add cx, 1
 	push dx
-
 		mov al, 035h
 		int 10h				; (5-0)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (5-1)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (5-2)
 		add  dx, 1
 		mov al, LColor
@@ -896,17 +806,13 @@ DrawMarge MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 6
 	add cx, 1
 	push dx
-
 		mov al, 035h
 		int 10h				; (6-0)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (6-1)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (6-2)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (6-3)
 		add  dx, 3
 		mov al, NColor
@@ -919,7 +825,6 @@ DrawMarge MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 035h
 		int 10h				; (7-1)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (7-2)
 	pop  dx
 
@@ -963,20 +868,15 @@ DrawBart MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 2
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (2-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-4)
 		add  dx, 1
 		mov al, 027h
@@ -985,26 +885,21 @@ DrawBart MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 035h
 		int 10h				; (2-6)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (2-7)
 	pop dx
 	; colonne 3
 	add cx, 1
 	push dx
-
 		mov al, NColor
 		int 10h				; (3-0)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (3-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-4)
 		add  dx, 1
 		mov al, 027h
@@ -1013,17 +908,14 @@ DrawBart MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 035h
 		int 10h				; (3-6)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (3-7)
 	pop dx
 	; colonne 4
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (4-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-1)
 		add  dx, 1
 		mov al, 000h
@@ -1032,7 +924,6 @@ DrawBart MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (4-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-4)
 		add  dx, 1
 		mov al, 027h
@@ -1044,20 +935,16 @@ DrawBart MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 5
 	add cx, 1
 	push dx
-
 		mov al, NColor
 		int 10h				; (5-0)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (5-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-4)
 		add  dx, 1
 		mov al, 027h
@@ -1072,11 +959,9 @@ DrawBart MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 6
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (6-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (6-1)
 		add  dx, 1
 		mov al, 000h
@@ -1091,7 +976,6 @@ DrawBart MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 0DFh
 		int 10h				; (6-6)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (6-7)
 	pop dx
 	; colonne 7
@@ -1123,20 +1007,15 @@ DrawBart MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 2
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (2-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-4)
 		add  dx, 1
 		mov al, 027h
@@ -1145,26 +1024,21 @@ DrawBart MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 035h
 		int 10h				; (2-6)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (2-7)
 	pop dx
 	; colonne 3
 	add cx, 1
 	push dx
-
 		mov al, NColor
 		int 10h				; (3-0)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (3-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-4)
 		add  dx, 1
 		mov al, 027h
@@ -1173,17 +1047,14 @@ DrawBart MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 035h
 		int 10h				; (3-6)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (3-7)
 	pop dx
 	; colonne 4
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (4-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-1)
 		add  dx, 1
 		mov al, 000h
@@ -1192,7 +1063,6 @@ DrawBart MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (4-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-4)
 		add  dx, 1
 		mov al, 027h
@@ -1204,20 +1074,16 @@ DrawBart MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 5
 	add cx, 1
 	push dx
-
 		mov al, NColor
 		int 10h				; (5-0)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (5-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-4)
 		add  dx, 1
 		mov al, 027h
@@ -1232,11 +1098,9 @@ DrawBart MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 6
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (6-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (6-1)
 		add  dx, 1
 		mov al, 000h
@@ -1251,7 +1115,6 @@ DrawBart MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 0DFh
 		int 10h				; (6-6)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (6-7)
 	pop dx
 	; colonne 7
@@ -1292,7 +1155,6 @@ DrawLisa MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (0-2)
 		add  dx, 4
-		mov al, LColor
 		int 10h				; (0-6)
 	pop dx
 	; colonne 1
@@ -1302,10 +1164,8 @@ DrawLisa MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (1-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (1-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (1-3)
 		add  dx, 3
 		mov al, 027h
@@ -1314,26 +1174,20 @@ DrawLisa MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 2
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (2-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-4)
 		add  dx, 1
 		mov al, 027h
 		int 10h				; (2-5)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (2-6)
 		add  dx, 1
 		mov al, NColor
@@ -1342,7 +1196,6 @@ DrawLisa MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 3
 	add cx, 1
 	push dx
-
 		mov al, NColor
 		int 10h				; (3-0)
 		add  dx, 1
@@ -1355,13 +1208,11 @@ DrawLisa MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (3-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-4)
 		add  dx, 1
 		mov al, 027h
 		int 10h				; (3-5)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (3-6)
 		add  dx, 1
 		mov al, NColor
@@ -1370,17 +1221,13 @@ DrawLisa MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 4
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (4-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-3)
 		add  dx, 1
 		mov al, NColor
@@ -1389,7 +1236,6 @@ DrawLisa MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 086h
 		int 10h				; (4-5)
 		add  dx, 1
-		mov al, 086h
 		int 10h				; (4-6)
 		add  dx, 1
 		mov al, 006h
@@ -1440,7 +1286,6 @@ DrawLisa MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (0-2)
 		add  dx, 3
-		mov al, LColor
 		int 10h				; (0-5)
 	pop dx
 	; colonne 1
@@ -1462,17 +1307,13 @@ DrawLisa MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 2
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (2-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-3)
 		add  dx, 1
 		mov al, NColor
@@ -1481,7 +1322,6 @@ DrawLisa MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 027h
 		int 10h				; (2-5)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (2-6)
 		add  dx, 1
 		mov al, NColor
@@ -1490,7 +1330,6 @@ DrawLisa MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 3
 	add cx, 1
 	push dx
-
 		mov al, NColor
 		int 10h				; (3-0)
 		add  dx, 1
@@ -1503,13 +1342,11 @@ DrawLisa MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (3-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-4)
 		add  dx, 1
 		mov al, 027h
 		int 10h				; (3-5)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (3-6)
 		add  dx, 1
 		mov al, NColor
@@ -1518,26 +1355,20 @@ DrawLisa MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 4
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (4-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-4)
 		add  dx, 1
 		mov al, 086h
 		int 10h				; (4-5)
 		add  dx, 1
-		mov al, 086h
 		int 10h				; (4-6)
 		add  dx, 1
 		mov al, 006h
@@ -1550,10 +1381,8 @@ DrawLisa MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (5-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-3)
 		add  dx, 3
 		mov al, 086h
@@ -1620,7 +1449,6 @@ DrawMaggie MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 035h
 		int 10h				; (1-6)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (1-7)
 	pop dx
 	; colonne 2
@@ -1630,13 +1458,10 @@ DrawMaggie MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (2-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-4)
 		add  dx, 1
 		mov al, NColor
@@ -1645,7 +1470,6 @@ DrawMaggie MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 035h
 		int 10h				; (2-6)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (2-7)
 	pop dx
 	; colonne 3
@@ -1658,13 +1482,10 @@ DrawMaggie MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (3-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-5)
 		add  dx, 1
 		mov al, 035h
@@ -1689,7 +1510,6 @@ DrawMaggie MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (4-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-5)
 		add  dx, 1
 		mov al, 0DFh
@@ -1705,22 +1525,18 @@ DrawMaggie MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (5-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-3)
 		add  dx, 1
 		mov al, 027h
 		int 10h				; (5-4)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (5-5)
 		add  dx, 1
 		mov al, 0DFh
 		int 10h				; (5-6)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (5-7)
 	pop dx
 	; colonne 6
@@ -1733,7 +1549,6 @@ DrawMaggie MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 027h
 		int 10h				; (6-4)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (6-5)
 		add  dx, 2
 		mov al, NColor
@@ -1767,7 +1582,6 @@ DrawMaggie MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 035h
 		int 10h				; (1-6)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (1-7)
 	pop dx
 	; colonne 2
@@ -1777,13 +1591,10 @@ DrawMaggie MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (2-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-4)
 		add  dx, 1
 		mov al, NColor
@@ -1792,7 +1603,6 @@ DrawMaggie MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 035h
 		int 10h				; (2-6)
 		add  dx, 1
-		mov al, 035h
 		int 10h				; (2-7)
 	pop dx
 	; colonne 3
@@ -1805,13 +1615,10 @@ DrawMaggie MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (3-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-5)
 		add  dx, 1
 		mov al, 035h
@@ -1836,7 +1643,6 @@ DrawMaggie MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (4-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-5)
 		add  dx, 1
 		mov al, 0DFh
@@ -1852,22 +1658,17 @@ DrawMaggie MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (5-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-5)
 		add  dx, 1
 		mov al, 0DFh
 		int 10h				; (5-6)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (5-7)
 	pop dx
 	; colonne 6
@@ -1880,7 +1681,6 @@ DrawMaggie MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 027h
 		int 10h				; (6-4)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (6-5)
 		add  dx, 2
 		mov al, NColor
@@ -1893,7 +1693,6 @@ DrawMaggie MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 027h
 		int 10h				; (7-4)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (7-5)
 	pop  dx
 
@@ -1927,7 +1726,6 @@ DrawBarney MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 006h
 		int 10h				; (0-1)
 		add  dx, 1
-		mov al, 006h
 		int 10h				; (0-2)
 		add  dx, 2
 		mov al, 03Eh
@@ -1936,17 +1734,14 @@ DrawBarney MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (0-5)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (0-6)
 	pop dx
 	; colonne 1
 	add cx, 1
 	push dx
-
 		mov al, 006h
 		int 10h				; (1-0)
 		add  dx, 1
-		mov al, 006h
 		int 10h				; (1-1)
 		add  dx, 1
 		mov al, LColor
@@ -1955,32 +1750,26 @@ DrawBarney MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 03Eh
 		int 10h				; (1-3)
 		add  dx, 1
-		mov al, 03Eh
 		int 10h				; (1-4)
 		add  dx, 1
-		mov al, 03Eh
 		int 10h				; (1-5)
 		add  dx, 1
 		mov al, 0DFh
 		int 10h				; (1-6)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (1-7)
 	pop dx
 	; colonne 2
 	add cx, 1
 	push dx
-
 		mov al, 006h
 		int 10h				; (2-0)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (2-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-3)
 		add  dx, 1
 		mov al, 03Eh
@@ -1992,20 +1781,17 @@ DrawBarney MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 0DFh
 		int 10h				; (2-6)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (2-7)
 	pop dx
 	; colonne 3
 	add cx, 1
 	push dx
-
 		mov al, 006h
 		int 10h				; (3-0)
 		add  dx, 2
 		mov al, LColor
 		int 10h				; (3-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-3)
 		add  dx, 1
 		mov al, 03Eh
@@ -2020,17 +1806,14 @@ DrawBarney MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 4
 	add cx, 1
 	push dx
-
 		mov al, 006h
 		int 10h				; (4-0)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (4-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-3)
 		add  dx, 1
 		mov al, 03Eh
@@ -2042,7 +1825,6 @@ DrawBarney MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 0DFh
 		int 10h				; (4-6)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (4-7)
 	pop dx
 	; colonne 5
@@ -2064,7 +1846,6 @@ DrawBarney MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 0DFh
 		int 10h				; (5-6)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (5-7)
 	pop dx
 	; colonne 6
@@ -2099,7 +1880,6 @@ DrawBarney MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 006h
 		int 10h				; (0-1)
 		add  dx, 1
-		mov al, 006h
 		int 10h				; (0-2)
 		add  dx, 2
 		mov al, 03Eh
@@ -2108,17 +1888,14 @@ DrawBarney MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (0-5)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (0-6)
 	pop dx
 	; colonne 1
 	add cx, 1
 	push dx
-
 		mov al, 006h
 		int 10h				; (1-0)
 		add  dx, 1
-		mov al, 006h
 		int 10h				; (1-1)
 		add  dx, 1
 		mov al, LColor
@@ -2127,32 +1904,26 @@ DrawBarney MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 03Eh
 		int 10h				; (1-3)
 		add  dx, 1
-		mov al, 03Eh
 		int 10h				; (1-4)
 		add  dx, 1
-		mov al, 03Eh
 		int 10h				; (1-5)
 		add  dx, 1
 		mov al, 0DFh
 		int 10h				; (1-6)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (1-7)
 	pop dx
 	; colonne 2
 	add cx, 1
 	push dx
-
 		mov al, 006h
 		int 10h				; (2-0)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (2-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-3)
 		add  dx, 1
 		mov al, 03Eh
@@ -2164,20 +1935,17 @@ DrawBarney MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 0DFh
 		int 10h				; (2-6)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (2-7)
 	pop dx
 	; colonne 3
 	add cx, 1
 	push dx
-
 		mov al, 006h
 		int 10h				; (3-0)
 		add  dx, 2
 		mov al, LColor
 		int 10h				; (3-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-3)
 		add  dx, 1
 		mov al, 03Eh
@@ -2192,17 +1960,14 @@ DrawBarney MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 4
 	add cx, 1
 	push dx
-
 		mov al, 006h
 		int 10h				; (4-0)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (4-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-3)
 		add  dx, 1
 		mov al, 03Eh
@@ -2214,7 +1979,6 @@ DrawBarney MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 0DFh
 		int 10h				; (4-6)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (4-7)
 	pop dx
 	; colonne 5
@@ -2236,7 +2000,6 @@ DrawBarney MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 0DFh
 		int 10h				; (5-6)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (5-7)
 	pop dx
 	; colonne 6
@@ -2252,7 +2015,6 @@ DrawBarney MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, NColor
 		int 10h				; (6-4)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (6-5)
 	pop dx
 	; colonne 7
@@ -2303,14 +2065,11 @@ DrawFlanders MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 2
 	add cx, 1
 	push dx
-
 		mov al, 006h
 		int 10h				; (2-0)
 		add  dx, 1
-		mov al, 006h
 		int 10h				; (2-1)
 		add  dx, 1
-		mov al, 006h
 		int 10h				; (2-2)
 		add  dx, 1
 		mov al, LColor
@@ -2322,7 +2081,6 @@ DrawFlanders MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 07Bh
 		int 10h				; (2-5)
 		add  dx, 1
-		mov al, 07Bh
 		int 10h				; (2-6)
 		add  dx, 1
 		mov al, 008h
@@ -2331,20 +2089,16 @@ DrawFlanders MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 3
 	add cx, 1
 	push dx
-
 		mov al, 006h
 		int 10h				; (3-0)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (3-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-4)
 		add  dx, 1
 		mov al, 03Eh
@@ -2359,7 +2113,6 @@ DrawFlanders MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 4
 	add cx, 1
 	push dx
-
 		mov al, 006h
 		int 10h				; (4-0)
 		add  dx, 1
@@ -2384,14 +2137,12 @@ DrawFlanders MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 5
 	add cx, 1
 	push dx
-
 		mov al, 006h
 		int 10h				; (5-0)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (5-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-2)
 		add  dx, 1
 		mov al, 006h
@@ -2412,7 +2163,6 @@ DrawFlanders MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 6
 	add cx, 1
 	push dx
-
 		mov al, 006h
 		int 10h				; (6-0)
 		add  dx, 1
@@ -2463,7 +2213,6 @@ DrawFlanders MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 2
 	add cx, 1
 	push dx
-
 		mov al, 006h
 		int 10h				; (2-0)
 		add  dx, 1
@@ -2491,14 +2240,12 @@ DrawFlanders MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 3
 	add cx, 1
 	push dx
-
 		mov al, 006h
 		int 10h				; (3-0)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (3-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-2)
 		add  dx, 1
 		mov al, 006h
@@ -2519,7 +2266,6 @@ DrawFlanders MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 4
 	add cx, 1
 	push dx
-
 		mov al, 006h
 		int 10h				; (4-0)
 		add  dx, 1
@@ -2544,20 +2290,16 @@ DrawFlanders MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 5
 	add cx, 1
 	push dx
-
 		mov al, 006h
 		int 10h				; (5-0)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (5-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-4)
 		add  dx, 1
 		mov al, 03Eh
@@ -2572,11 +2314,9 @@ DrawFlanders MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 6
 	add cx, 1
 	push dx
-
 		mov al, 006h
 		int 10h				; (6-0)
 		add  dx, 1
-		mov al, 006h
 		int 10h				; (6-1)
 		add  dx, 1
 		mov al, 006h
@@ -2591,7 +2331,6 @@ DrawFlanders MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 07Bh
 		int 10h				; (6-5)
 		add  dx, 1
-		mov al, 07Bh
 		int 10h				; (6-6)
 		add  dx, 1
 		mov al, 008h
@@ -2620,7 +2359,7 @@ DrawFlanders MACRO LColor, NColor      ; LIGHT color and Normal color
 	drawFlandersEND:
 ENDM
 
-DrawApu MACRO NColor      ; LIGHT color and Normal color
+DrawApu MACRO NColor      ; Normal color
 	local drawApu1, drawApuINC, allowedDrawApuINC, drawApuEND
 
 	mov cx, apu
@@ -2638,7 +2377,6 @@ DrawApu MACRO NColor      ; LIGHT color and Normal color
 		mov al, 0DFh
 		int 10h				; (0-1)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (0-2)
 		add  dx, 3
 		mov al, 07Bh
@@ -2650,14 +2388,11 @@ DrawApu MACRO NColor      ; LIGHT color and Normal color
 	; colonne 1
 	add cx, 1
 	push dx
-
 		mov al, 0DFh
 		int 10h				; (1-0)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (1-1)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (1-2)
 		add  dx, 1
 		mov al, NColor
@@ -2666,7 +2401,6 @@ DrawApu MACRO NColor      ; LIGHT color and Normal color
 		mov al, 07Bh
 		int 10h				; (1-5)
 		add  dx, 1
-		mov al, 07Bh
 		int 10h				; (1-6)
 		add  dx, 1
 		mov al, 0DFh
@@ -2679,10 +2413,8 @@ DrawApu MACRO NColor      ; LIGHT color and Normal color
 		mov al, 0DFh
 		int 10h				; (2-1)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (2-2)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (2-3)
 		add  dx, 3
 		mov al, 07Bh
@@ -2694,17 +2426,14 @@ DrawApu MACRO NColor      ; LIGHT color and Normal color
 	; colonne 3
 	add cx, 1
 	push dx
-
 		mov al, 0DFh
 		int 10h				; (3-0)
 		add  dx, 1
 		mov al, NColor
 		int 10h				; (3-1)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (3-2)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (3-3)
 		add  dx, 1
 		mov al, 086h
@@ -2719,7 +2448,6 @@ DrawApu MACRO NColor      ; LIGHT color and Normal color
 	; colonne 4
 	add cx, 1
 	push dx
-
 		mov al, 0DFh
 		int 10h				; (4-0)
 		add  dx, 1
@@ -2732,7 +2460,6 @@ DrawApu MACRO NColor      ; LIGHT color and Normal color
 		mov al, NColor
 		int 10h				; (4-3)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (4-4)
 		add  dx, 1
 		mov al, 086h
@@ -2744,20 +2471,16 @@ DrawApu MACRO NColor      ; LIGHT color and Normal color
 	; colonne 5
 	add cx, 1
 	push dx
-
 		mov al, 0DFh
 		int 10h				; (5-0)
 		add  dx, 1
 		mov al, NColor
 		int 10h				; (5-1)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (5-2)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (5-3)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (5-4)
 		add  dx, 1
 		mov al, 086h
@@ -2772,11 +2495,9 @@ DrawApu MACRO NColor      ; LIGHT color and Normal color
 	; colonne 6
 	add cx, 1
 	push dx
-
 		mov al, 0DFh
 		int 10h				; (6-0)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (6-1)
 		add  dx, 2
 		mov al, NColor
@@ -2791,11 +2512,9 @@ DrawApu MACRO NColor      ; LIGHT color and Normal color
 	; colonne 7
 	add cx, 1
 	push dx
-
 		mov al, 0DFh
 		int 10h				; (7-0)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (7-1)
 		add  dx, 5
 		mov al, NColor
@@ -2812,11 +2531,9 @@ DrawApu MACRO NColor      ; LIGHT color and Normal color
 	; colonne 0
 	add cx, 1
 	push dx
-
 		mov al, 0DFh
 		int 10h				; (0-0)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (0-1)
 		add  dx, 5
 		mov al, NColor
@@ -2825,11 +2542,9 @@ DrawApu MACRO NColor      ; LIGHT color and Normal color
 	; colonne 1
 	add cx, 1
 	push dx
-
 		mov al, 0DFh
 		int 10h				; (1-0)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (1-1)
 		add  dx, 2
 		mov al, NColor
@@ -2844,20 +2559,16 @@ DrawApu MACRO NColor      ; LIGHT color and Normal color
 	; colonne 2
 	add cx, 1
 	push dx
-
 		mov al, 0DFh
 		int 10h				; (2-0)
 		add  dx, 1
 		mov al, NColor
 		int 10h				; (2-1)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (2-2)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (2-3)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (2-4)
 		add  dx, 1
 		mov al, 086h
@@ -2872,7 +2583,6 @@ DrawApu MACRO NColor      ; LIGHT color and Normal color
 	; colonne 3
 	add cx, 1
 	push dx
-
 		mov al, 0DFh
 		int 10h				; (3-0)
 		add  dx, 1
@@ -2885,7 +2595,6 @@ DrawApu MACRO NColor      ; LIGHT color and Normal color
 		mov al, NColor
 		int 10h				; (3-3)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (3-4)
 		add  dx, 1
 		mov al, 086h
@@ -2900,17 +2609,14 @@ DrawApu MACRO NColor      ; LIGHT color and Normal color
 	; colonne 4
 	add cx, 1
 	push dx
-
 		mov al, 0DFh
 		int 10h				; (4-0)
 		add  dx, 1
 		mov al, NColor
 		int 10h				; (4-1)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (4-2)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (4-3)
 		add  dx, 1
 		mov al, 086h
@@ -2941,14 +2647,11 @@ DrawApu MACRO NColor      ; LIGHT color and Normal color
 	; colonne 6
 	add cx, 1
 	push dx
-
 		mov al, 0DFh
 		int 10h				; (6-0)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (6-1)
 		add  dx, 1
-		mov al, 0DFh
 		int 10h				; (6-2)
 		add  dx, 1
 		mov al, NColor
@@ -2957,7 +2660,6 @@ DrawApu MACRO NColor      ; LIGHT color and Normal color
 		mov al, 07Bh
 		int 10h				; (6-5)
 		add  dx, 1
-		mov al, 07Bh
 		int 10h				; (6-6)
 		add  dx, 1
 		mov al, 0DFh
@@ -3013,7 +2715,6 @@ DrawPetitPapaNoel MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (0-6)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (0-7)
 	pop dx
 	; colonne 1
@@ -3023,26 +2724,20 @@ DrawPetitPapaNoel MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (1-1)
 		add  dx, 4
-		mov al, LColor
 		int 10h				; (1-5)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (1-6)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (1-7)
 	pop dx
 	; colonne 2
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (2-0)
 		add  dx, 4
-		mov al, LColor
 		int 10h				; (2-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-5)
 		add  dx, 1
 		mov al, NColor
@@ -3054,35 +2749,27 @@ DrawPetitPapaNoel MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 3
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (3-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-4)
 		add  dx, 1
 		mov al, NColor
 		int 10h				; (3-5)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (3-6)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (3-7)
 	pop dx
 	; colonne 4
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (4-0)
 		add  dx, 1
@@ -3098,26 +2785,20 @@ DrawPetitPapaNoel MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (4-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-5)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-6)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-7)
 	pop dx
 	; colonne 5
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (5-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-2)
 		add  dx, 1
 		mov al, NColor
@@ -3126,13 +2807,11 @@ DrawPetitPapaNoel MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (5-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-5)
 		add  dx, 1
 		mov al, NColor
 		int 10h				; (5-6)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (5-7)
 	pop dx
 	; colonne 6
@@ -3164,7 +2843,6 @@ DrawPetitPapaNoel MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (0-6)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (0-7)
 	pop dx
 	; colonne 1
@@ -3177,10 +2855,8 @@ DrawPetitPapaNoel MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (1-5)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (1-6)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (1-7)
 	pop dx
 	; colonne 2
@@ -3193,10 +2869,8 @@ DrawPetitPapaNoel MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (2-2)
 		add  dx, 2
-		mov al, LColor
 		int 10h				; (2-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-5)
 		add  dx, 1
 		mov al, NColor
@@ -3208,14 +2882,11 @@ DrawPetitPapaNoel MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 3
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (3-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-2)
 		add  dx, 1
 		mov al, NColor
@@ -3227,16 +2898,13 @@ DrawPetitPapaNoel MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, NColor
 		int 10h				; (3-5)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (3-6)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (3-7)
 	pop dx
 	; colonne 4
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (4-0)
 		add  dx, 1
@@ -3252,47 +2920,36 @@ DrawPetitPapaNoel MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (4-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-5)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-6)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-7)
 	pop dx
 	; colonne 5
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (5-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-5)
 		add  dx, 1
 		mov al, NColor
 		int 10h				; (5-6)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (5-7)
 	pop dx
 	; colonne 6
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (6-0)
 	pop dx
@@ -3330,14 +2987,11 @@ DrawBouleDeNeige MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 0
 	add cx, 1
 	push dx
-
 		mov al, NColor
 		int 10h				; (0-0)
 		add  dx, 3
-		mov al, NColor
 		int 10h				; (0-3)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (0-4)
 	pop dx
 	; colonne 1
@@ -3347,19 +3001,15 @@ DrawBouleDeNeige MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, NColor
 		int 10h				; (1-1)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (1-2)
 		add  dx, 2
 		mov al, LColor
 		int 10h				; (1-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (1-5)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (1-6)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (1-7)
 	pop dx
 	; colonne 2
@@ -3372,10 +3022,8 @@ DrawBouleDeNeige MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (2-5)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-6)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-7)
 	pop dx
 	; colonne 3
@@ -3385,13 +3033,10 @@ DrawBouleDeNeige MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (3-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-4)
 		add  dx, 1
 		mov al, 035h
@@ -3419,7 +3064,6 @@ DrawBouleDeNeige MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (4-6)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-7)
 	pop dx
 	; colonne 5
@@ -3429,13 +3073,10 @@ DrawBouleDeNeige MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (5-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-4)
 		add  dx, 3
 		mov al, NColor
@@ -3473,10 +3114,8 @@ DrawBouleDeNeige MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, NColor
 		int 10h				; (0-1)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (0-2)
 		add  dx, 2
-		mov al, NColor
 		int 10h				; (0-4)
 	pop dx
 	; colonne 1
@@ -3486,19 +3125,15 @@ DrawBouleDeNeige MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, NColor
 		int 10h				; (1-0)
 		add  dx, 3
-		mov al, NColor
 		int 10h				; (1-3)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (1-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (1-5)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (1-6)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (1-7)
 	pop dx
 	; colonne 2
@@ -3511,10 +3146,8 @@ DrawBouleDeNeige MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (2-5)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-6)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (2-7)
 	pop dx
 	; colonne 3
@@ -3524,13 +3157,10 @@ DrawBouleDeNeige MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (3-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-4)
 		add  dx, 1
 		mov al, 035h
@@ -3558,7 +3188,6 @@ DrawBouleDeNeige MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (4-6)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-7)
 	pop dx
 	; colonne 5
@@ -3568,16 +3197,12 @@ DrawBouleDeNeige MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (5-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-4)
 		add  dx, 2
-		mov al, LColor
 		int 10h				; (5-6)
 	pop dx
 	; colonne 6
@@ -3647,13 +3272,11 @@ DrawKrusty MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 07Bh
 		int 10h				; (1-2)
 		add  dx, 1
-		mov al, 07Bh
 		int 10h				; (1-3)
 		add  dx, 1
 		mov al, NColor
 		int 10h				; (1-4)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (1-5)
 		add  dx, 1
 		mov al, 01Eh
@@ -3675,7 +3298,6 @@ DrawKrusty MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 018h
 		int 10h				; (2-4)
 		add  dx, 1
-		mov al, 018h
 		int 10h				; (2-5)
 		add  dx, 1
 		mov al, 031h
@@ -3687,20 +3309,16 @@ DrawKrusty MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 3
 	add cx, 1
 	push dx
-
 		mov al, 07Bh
 		int 10h				; (3-0)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (3-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-4)
 		add  dx, 1
 		mov al, 018h
@@ -3715,14 +3333,12 @@ DrawKrusty MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 4
 	add cx, 1
 	push dx
-
 		mov al, 07Bh
 		int 10h				; (4-0)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (4-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-2)
 		add  dx, 1
 		mov al, 000h
@@ -3731,7 +3347,6 @@ DrawKrusty MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 059h
 		int 10h				; (4-4)
 		add  dx, 1
-		mov al, 059h
 		int 10h				; (4-5)
 		add  dx, 1
 		mov al, 031h
@@ -3744,16 +3359,13 @@ DrawKrusty MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (5-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-3)
 		add  dx, 1
 		mov al, 059h
 		int 10h				; (5-4)
 		add  dx, 1
-		mov al, 059h
 		int 10h				; (5-5)
 		add  dx, 1
 		mov al, 07Bh
@@ -3775,7 +3387,6 @@ DrawKrusty MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 059h
 		int 10h				; (6-4)
 		add  dx, 1
-		mov al, 059h
 		int 10h				; (6-5)
 		add  dx, 1
 		mov al, 07Bh
@@ -3825,13 +3436,11 @@ DrawKrusty MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 07Bh
 		int 10h				; (1-1)
 		add  dx, 1
-		mov al, 07Bh
 		int 10h				; (1-2)
 		add  dx, 2
 		mov al, NColor
 		int 10h				; (1-4)
 		add  dx, 1
-		mov al, NColor
 		int 10h				; (1-5)
 		add  dx, 2
 		mov al, 027h
@@ -3850,7 +3459,6 @@ DrawKrusty MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 018h
 		int 10h				; (2-3)
 		add  dx, 1
-		mov al, 018h
 		int 10h				; (2-4)
 		add  dx, 1
 		mov al, 031h
@@ -3859,23 +3467,19 @@ DrawKrusty MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 027h
 		int 10h				; (2-6)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (2-7)
 	pop dx
 	; colonne 3
 	add cx, 1
 	push dx
-
 		mov al, 07Bh
 		int 10h				; (3-0)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (3-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-2)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-3)
 		add  dx, 1
 		mov al, 018h
@@ -3884,7 +3488,6 @@ DrawKrusty MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 031h
 		int 10h				; (3-5)
 		add  dx, 1
-		mov al, 031h
 		int 10h				; (3-6)
 		add  dx, 1
 		mov al, 027h
@@ -3893,11 +3496,9 @@ DrawKrusty MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 4
 	add cx, 1
 	push dx
-
 		mov al, LColor
 		int 10h				; (4-0)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-1)
 		add  dx, 1
 		mov al, 000h
@@ -3909,7 +3510,6 @@ DrawKrusty MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 059h
 		int 10h				; (4-4)
 		add  dx, 1
-		mov al, 059h
 		int 10h				; (4-5)
 		add  dx, 1
 		mov al, 031h
@@ -3922,19 +3522,16 @@ DrawKrusty MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (5-1)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-2)
 		add  dx, 1
 		mov al, 059h
 		int 10h				; (5-3)
 		add  dx, 1
-		mov al, 059h
 		int 10h				; (5-4)
 		add  dx, 1
 		mov al, 07Bh
 		int 10h				; (5-5)
 		add  dx, 1
-		mov al, 07Bh
 		int 10h				; (5-6)
 		add  dx, 1
 		mov al, 086h
@@ -3953,7 +3550,6 @@ DrawKrusty MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 059h
 		int 10h				; (6-3)
 		add  dx, 1
-		mov al, 059h
 		int 10h				; (6-4)
 		add  dx, 1
 		mov al, 07Bh
@@ -3962,7 +3558,6 @@ DrawKrusty MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 086h
 		int 10h				; (6-6)
 		add  dx, 1
-		mov al, 086h
 		int 10h				; (6-7)
 	pop dx
 	; colonne 7
@@ -3972,7 +3567,6 @@ DrawKrusty MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 07Bh
 		int 10h				; (7-1)
 		add  dx, 1
-		mov al, 07Bh
 		int 10h				; (7-2)
 		add  dx, 1
 		mov al, 059h
@@ -4027,14 +3621,12 @@ DrawTahitiBob MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 1
 	add cx, 1
 	push dx
-
 		mov al, 086h
 		int 10h				; (1-0)
 		add  dx, 1
 		mov al, 027h
 		int 10h				; (1-1)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (1-2)
 		add  dx, 1
 		mov al, 086h
@@ -4049,17 +3641,13 @@ DrawTahitiBob MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 2
 	add cx, 1
 	push dx
-
 		mov al, 027h
 		int 10h				; (2-0)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (2-1)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (2-2)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (2-3)
 		add  dx, 2
 		mov al, LColor
@@ -4074,14 +3662,12 @@ DrawTahitiBob MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 3
 	add cx, 1
 	push dx
-
 		mov al, 086h
 		int 10h				; (3-0)
 		add  dx, 1
 		mov al, 027h
 		int 10h				; (3-1)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (3-2)
 		add  dx, 1
 		mov al, LColor
@@ -4102,7 +3688,6 @@ DrawTahitiBob MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 4
 	add cx, 1
 	push dx
-
 		mov al, 086h
 		int 10h				; (4-0)
 		add  dx, 1
@@ -4118,7 +3703,6 @@ DrawTahitiBob MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (4-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-5)
 		add  dx, 1
 		mov al, 031h
@@ -4127,23 +3711,18 @@ DrawTahitiBob MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 5
 	add cx, 1
 	push dx
-
 		mov al, 027h
 		int 10h				; (5-0)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (5-1)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (5-2)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (5-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-5)
 		add  dx, 1
 		mov al, 07Bh
@@ -4155,7 +3734,6 @@ DrawTahitiBob MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 6
 	add cx, 1
 	push dx
-
 		mov al, 086h
 		int 10h				; (6-0)
 		add  dx, 1
@@ -4187,10 +3765,8 @@ DrawTahitiBob MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 086h
 		int 10h				; (7-2)
 		add  dx, 1
-		mov al, 086h
 		int 10h				; (7-3)
 		add  dx, 4
-		mov al, 086h
 		int 10h				; (7-7)
 	pop  dx
 
@@ -4208,23 +3784,18 @@ DrawTahitiBob MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 027h
 		int 10h				; (0-2)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (0-3)
 	pop dx
 	; colonne 1
 	add cx, 1
 	push dx
-
 		mov al, 027h
 		int 10h				; (1-0)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (1-1)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (1-2)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (1-3)
 		add  dx, 2
 		mov al, LColor
@@ -4236,14 +3807,12 @@ DrawTahitiBob MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 2
 	add cx, 1
 	push dx
-
 		mov al, 086h
 		int 10h				; (2-0)
 		add  dx, 1
 		mov al, 027h
 		int 10h				; (2-1)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (2-2)
 		add  dx, 1
 		mov al, 086h
@@ -4261,20 +3830,16 @@ DrawTahitiBob MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 3
 	add cx, 1
 	push dx
-
 		mov al, 027h
 		int 10h				; (3-0)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (3-1)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (3-2)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (3-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (3-4)
 		add  dx, 1
 		mov al, 01Eh
@@ -4286,11 +3851,9 @@ DrawTahitiBob MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 4
 	add cx, 1
 	push dx
-
 		mov al, 027h
 		int 10h				; (4-0)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (4-1)
 		add  dx, 1
 		mov al, LColor
@@ -4302,7 +3865,6 @@ DrawTahitiBob MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, LColor
 		int 10h				; (4-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (4-5)
 		add  dx, 1
 		mov al, 031h
@@ -4311,23 +3873,19 @@ DrawTahitiBob MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 5
 	add cx, 1
 	push dx
-
 		mov al, 086h
 		int 10h				; (5-0)
 		add  dx, 1
 		mov al, 027h
 		int 10h				; (5-1)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (5-2)
 		add  dx, 1
 		mov al, LColor
 		int 10h				; (5-3)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-4)
 		add  dx, 1
-		mov al, LColor
 		int 10h				; (5-5)
 		add  dx, 1
 		mov al, 07Bh
@@ -4339,11 +3897,9 @@ DrawTahitiBob MACRO LColor, NColor      ; LIGHT color and Normal color
 	; colonne 6
 	add cx, 1
 	push dx
-
 		mov al, 027h
 		int 10h				; (6-0)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (6-1)
 		add  dx, 1
 		mov al, LColor
@@ -4371,7 +3927,6 @@ DrawTahitiBob MACRO LColor, NColor      ; LIGHT color and Normal color
 		mov al, 027h
 		int 10h				; (7-2)
 		add  dx, 1
-		mov al, 027h
 		int 10h				; (7-3)
 		add  dx, 2
 		mov al, NColor

@@ -6,6 +6,7 @@
 ;                |_|                                                
 ; By Clément RICATTE & Valentin Azancoth
 ; -> github.com/AvaN0x
+; -> github.com/Valaaz
 
 ;-------------------------------------------------
 	TITLE DISPLAY - SimpsonoVirus
@@ -72,25 +73,22 @@ DSEG		SEGMENT
 	Krusty		DW	0, 		0, 			0,			304,	216,	56,		88			, 0
 	TahitiBob	DW	0, 		0, 			0,			96,		8,		144,	176			, 7
 
-	RECORDMOVE	DW	0
-	MENUSTATE	DW	0
-	MOVSIM		DW	0
-	timerMov	DB	0
+	RECORDMOVE	DW	0		; record de déplacement des parties précédentes
+	MENUSTATE	DW	0		; position de la chauve-souris dans le menu
+	MOVSIM		DW	0		; variable aléatoire utilisée pour les déplacements des simpson
+	timerMov	DB	0		; variable servant de boucle pour les déplacements des simpson (tous les 5 refreshs de fenêtre)
 
-	gamePosSick	DW	4
+	gamePosSick	DW	4		; variable pour la position des simpsons en bas a gauche de l'écran
 
 ; --------------------------
 ; Texts
 ; --------------------------
 
-	; all
-	S_ESCAPE	DB "Press Escape to leave", 24h
-
 	; gameMenu
 	S_MENU1		DB "Spread the virus to the SIMPSONS !", 24h
-	S_MENU2		DB "Play", 24H
-	S_MENU3		DB "Help", 24H
-	S_MENU4		DB "Quit", 24H
+	S_MENU2		DB "Play", 24h
+	S_MENU3		DB "Help", 24h
+	S_MENU4		DB "Quit", 24h
 
 	S_CREDIT	DB "By github.com/AvaN0x", 24h
 	S_CREDIT2	DB "and github.com/Valaaz", 24h
@@ -106,14 +104,15 @@ DSEG		SEGMENT
 	S_HLEAVE	DB "Press any key to leave", 24h
 
 	; gameMain
-	S_NBMOVE	DB " moves", 13, 10, 24h
+	S_NBMOVE	DB " moves", 24h
 	S_RECORD	DB "Record: ", 24h
+	S_ESCAPE	DB "Press Escape to leave", 24h
 
 	; winPanel
 	S_WIN1		DB "Victory in", 24h
 	S_WIN2		DB "moves", 24h
 	S_WINRECORD1	DB "You have set your new record!", 24h
-	S_WINRECORD2	DB "You beated your old record!", 24h
+	S_WINRECORD2	DB "You beat your old record!", 24h
 	S_ENTER		DB "Press Enter or Space to continue", 24h
 
 DSEG		ENDS
@@ -540,13 +539,6 @@ jmp gameMain
 
 winPanel:
 	DELAY 0ffffh	; plus longue pause sur le jeu
-	; son pour la victoire
-	SOUND 2280, 2	;	C	523.25hz
-	SOUND 2031, 1	;	D	587.33hz
-	SOUND 2280, 2	;	C	523.25hz
-	SOUND 2031, 1	;	D	587.33hz
-	SOUND 2280, 2	;	C	523.25hz
-	SOUND 2031, 1	;	D	587.33hz
 
 	CLEARSCREEN	_GREEN_		; on nettoie l'écran entièrement à chaque tour
 	FILLSCREEN 1, 1, 38, 23, _BLACK_		; on remplis la zone visuelle
@@ -560,6 +552,28 @@ winPanel:
 	SETCURSOR 4, 22
 	stringout S_ENTER		; "Press Enter or Space to continue"
 
+	; on place tous les simpson une fois avant le son
+		call menuSimpsonReset		; on donne au simpson la position voulue pour le menu
+		mov PLAYER, 112		; x
+		mov PLAYER+2, 64	; y
+			call DrawPLAYER
+		mov PLAYER, 200		; x
+		mov PLAYER+2, 64	; y
+			call DrawPLAYER
+		DrawHomer		_LGREEN_, _GREEN_	
+		DrawMarge		_LGREEN_, _GREEN_	
+		DrawBart		_LGREEN_, _GREEN_	
+		DrawLisa		_LGREEN_, _GREEN_	
+		DrawMaggie		_LGREEN_, _GREEN_	
+		DrawBarney		_LGREEN_, _GREEN_	
+		DrawFlanders	_LGREEN_, _GREEN_	
+		DrawApu			_GREEN_	
+		DrawPetitPapaNoel	_LGREEN_, _GREEN_	
+		DrawBouleDeNeige	_LGREEN_, _GREEN_	
+		DrawKrusty		_LGREEN_, _GREEN_	
+		DrawTahitiBob	_LGREEN_, _GREEN_	
+
+
 	CMP RECORDMOVE, 0					; si le record vaut 0 (set de base)
 	jne CheckRecordLess
 		SETCURSOR 5, 15
@@ -569,19 +583,25 @@ winPanel:
 
 	CheckRecordLess:
 	CMPMEM PLAYER+4, RECORDMOVE		; si le nombre de deplacement est inferieur au record
-	jge winPanelContinue
-		SETCURSOR 6, 15
-		STRINGOUT S_WINRECORD2	; "You beated your old record!"
+	jge winPanelSound
+		SETCURSOR 7, 15
+		STRINGOUT S_WINRECORD2	; "You beat your old record!"
 		mov ax, PLAYER+4
 		mov RECORDMOVE, ax		; on change le record
 
-	winPanelContinue:
+	winPanelSound:
+	; son pour la victoire
+	SOUND 2280, 5	;	C	523.25hz
+	SOUND 2031, 1	;	D	587.33hz
+	SOUND 2280, 5	;	C	523.25hz
+	SOUND 2031, 1	;	D	587.33hz
+
+	winPanelContinue:		; boucle utilisée pour l'animation des simpson jusqu'a avoir une bonne touche pour confirmer
 		DELAY 0ffffh
 		FILLSCREEN 8, 3, 31, 5, _BLACK_		; on remplis la zone ou se trouvent des personnages
 		FILLSCREEN 14, 8, 15, 8, _BLACK_		; on remplis la zone ou se trouve un personnage
 		FILLSCREEN 25, 8, 26, 8, _BLACK_		; on remplis la zone ou se trouve un personnage
 
-		call menuSimpsonReset		; on donne au simpson la position voulue pour le menu
 		mov PLAYER, 112		; x
 		mov PLAYER+2, 64	; y
 			call DrawPLAYER

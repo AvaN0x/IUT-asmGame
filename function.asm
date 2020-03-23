@@ -6,6 +6,7 @@
 ;                |_|                                                
 ; By Clément RICATTE & Valentin Azancoth
 ; -> github.com/AvaN0x
+; -> github.com/Valaaz
 
 
 ; ---------------------
