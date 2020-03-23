@@ -289,7 +289,7 @@ SOUND MACRO frequency, duration
 
 		mov cx, duration	; on mets la valeur de la  durée dans cx
 		pause:
-			DELAY 07fffh	; plus longue pause sur le jeu
+			DELAY 0bfffh	; plus longue pause sur le jeu
 		dec cx				; on décrémente cx
 		jne pause			; si cx n'est pas égal a 0, on retourne a pause
 

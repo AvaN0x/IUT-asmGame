@@ -33,7 +33,6 @@ DSEG		SEGMENT
 	_KD_	EQU 20h		; D
 	_Kent_  EQU 1ch		; ENTER
 	_Kspce_	EQU 39h		; SPACE
-	_KH_	EQU 23h		; H
 	_Kesc_  EQU 01h		; ESCAPE
 	_KBackspace_	EQU 0Eh		; BACKSPACE
 
@@ -591,10 +590,24 @@ winPanel:
 
 	winPanelSound:
 	; son pour la victoire
-	SOUND 2280, 5	;	C	523.25hz
-	SOUND 2031, 1	;	D	587.33hz
-	SOUND 2280, 5	;	C	523.25hz
-	SOUND 2031, 1	;	D	587.33hz
+		SOUND 4063, 1	; D 293.66hz
+			DELAY 0cfffh	; plus longue pause sur le jeu
+		SOUND 3043, 1	; G 391hz
+		SOUND 3043, 1	; G 391hz
+		SOUND 3043, 1	; G 391hz
+			DELAY 0cfffh	; plus longue pause sur le jeu
+		SOUND 4063, 1	; D 293.66hz
+		SOUND 3043, 1	; G 391hz
+		SOUND 2415, 1	; B 493.88hz
+			DELAY 0cfffh	; plus longue pause sur le jeu
+		SOUND 4063, 1	; D 293.66hz
+		SOUND 3043, 1	; G 391hz
+		SOUND 2031, 2	; D 587.33hz
+			DELAY 0cfffh	; plus longue pause sur le jeu
+		SOUND 2415, 1	; B 493.88hz
+		SOUND 2031, 1	; D 587.33hz
+			DELAY 0cfffh	; plus longue pause sur le jeu
+		SOUND 1521, 2	; G 783.99hz
 
 	winPanelContinue:		; boucle utilisée pour l'animation des simpson jusqu'a avoir une bonne touche pour confirmer
 		DELAY 0ffffh
