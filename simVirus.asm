@@ -58,19 +58,19 @@ DSEG		SEGMENT
 					; x, y, nbmove,	animation stade
 	PLAYER		DW	152, 96, 0, 	0
 
-				; 	x, 		y, boolean sick,   coordmax right, 	left, 	top, 	bottom
-	Homer		DW	0, 		0, 			0,			96,		8,		16,		48
-	Marge		DW	0, 		0, 			0,			208,	160,	16,		88
-	Bart		DW	0, 		0, 			0,			304,	216,	104,	136
-	Lisa		DW	0, 		0, 			0,			304,	216,	16,		48
-	Maggie		DW	0, 		0, 			0,			152,	104,	16,		88
-	Barney		DW	0, 		0, 			0,			96,		8,		56,		88
-	Flanders	DW	0, 		0, 			0,			208,	160,	104,	176
-	Apu 		DW	0, 		0, 			0,			96,		8,		104,	136
-	PetitPapaNoel	DW	0, 	0, 			0,			152,	104,	104,	176
-	BouleDeNeige	DW	0, 	0, 			0,			304,	216,	144,	176
-	Krusty		DW	0, 		0, 			0,			304,	216,	56,		88
-	TahitiBob	DW	0, 		0, 			0,			96,		8,		144,	176
+				; 	x, 		y, boolean sick,   coordmax right, 	left, 	top, 	bottom,		animation stade
+	Homer		DW	0, 		0, 			0,			96,		8,		16,		48			, 0
+	Marge		DW	0, 		0, 			0,			208,	160,	16,		88			, 4
+	Bart		DW	0, 		0, 			0,			304,	216,	104,	136			, 3
+	Lisa		DW	0, 		0, 			0,			304,	216,	16,		48			, 4
+	Maggie		DW	0, 		0, 			0,			152,	104,	16,		88			, 0
+	Barney		DW	0, 		0, 			0,			96,		8,		56,		88			, 5
+	Flanders	DW	0, 		0, 			0,			208,	160,	104,	176			, 6
+	Apu 		DW	0, 		0, 			0,			96,		8,		104,	136			, 2
+	PetitPapaNoel	DW	0, 	0, 			0,			152,	104,	104,	176			, 3
+	BouleDeNeige	DW	0, 	0, 			0,			304,	216,	144,	176			, 1
+	Krusty		DW	0, 		0, 			0,			304,	216,	56,		88			, 0
+	TahitiBob	DW	0, 		0, 			0,			96,		8,		144,	176			, 7
 
 	RECORDMOVE	DW	0
 	MENUSTATE	DW	0
@@ -142,21 +142,19 @@ call SETGRAPHICS
 ; --------------------------
 
 gameMenu:
+	DELAY 07fffh
+
 	CLEARSCREEN	_LORANGE_		; on nettoie l'écran entièrement à chaque tour
 	FILLSCREEN 1, 1, 38, 23, _BLACK_		; on remplis la zone visuelle
 
-	
 	SETCURSOR 3, 6
 	STRINGOUT S_MENU1			; "Spread the virus to the SIMPSONS !"
-
 	SETCURSOR 18, 12
 	STRINGOUT S_MENU2			; "Play"
 	SETCURSOR 18, 14
 	STRINGOUT S_MENU3			; "Help"
 	SETCURSOR 18, 16
 	STRINGOUT S_MENU4			; "Quit"
-
-
 	SETCURSOR 18, 21
 	STRINGOUT S_CREDIT			; "By github.com/AvaN0x"
 	SETCURSOR 17, 22
@@ -168,6 +166,7 @@ gameMenu:
 	je playerPosHelp
 	cmp MENUSTATE, 2
 	je playerPosQuit
+
 	jmp endPlayerPos
 
 		playerPosPlay:
@@ -189,9 +188,7 @@ gameMenu:
 
 	; on dessine les simpsons
 		call menuSimpsonReset		; on donne au simpson la position voulue pour le menu
-
 		call DrawPLAYER
-
 		DrawHomer		_YELLOW_, _LORANGE_	
 		DrawMarge		_YELLOW_, _LORANGE_	
 		DrawBart		_YELLOW_, _LORANGE_	
@@ -207,9 +204,12 @@ gameMenu:
 
 	SETCURSOR 0, 22		; position du curseur pour le message lorsque le programme s'arrête "Press any key to continue."
 
+	mov ah, 01h		; fonction pour verifier si une touche est enfoncée
+	int 16h			; get key press
+	jz gameMenu			; s'il n'y a aucune touche, on relance la boucle
+
 	mov ah, 0		; fonction pour recuperer la touche
 	int 16h			; get key press
-
 
 	cmp ah, _UP_		; if key = UP
 	je menuUP			; on fait le déplacement
@@ -260,16 +260,24 @@ helpPanel:
 	STRINGOUT S_HESCAPE		; "ESCAPE to leave"
 	SETCURSOR 4, 15
 	STRINGOUT S_HCONFIRM	; "SPACE or ENTER to confirm"
-
-	mov PLAYER, 112			; x
-	mov PLAYER+2, 176		; y
-	call DrawPLAYER
-
 	SETCURSOR 16, 22
 	STRINGOUT S_HLEAVE		; "Press any key to leave"
 
-	mov ah, 0		; fonction pour recuperer la touche
-	int 16h			; get key press
+	helpPanelLoad:
+		DELAY 07fffh
+
+		FILLSCREEN 14, 22, 15, 22, _BLACK_		; on remplis la zone ou se trouve un personnage
+		
+		mov PLAYER, 112			; x
+		mov PLAYER+2, 176		; y
+			call DrawPLAYER
+
+		mov ah, 01h		; fonction pour verifier si une touche est enfoncée
+		int 16h			; get key press
+		jz helpPanelLoad	; s'il n'y a aucune touche, on relance la boucle
+
+		mov ah, 0		; fonction pour recuperer la touche
+		int 16h			; get key press
 jmp gameMenu
 
 ; --------------------------
@@ -531,33 +539,17 @@ jmp gameMain
 ; --------------------------
 
 winPanel:
+	DELAY 0ffffh	; plus longue pause sur le jeu
+	; son pour la victoire
+	SOUND 2280, 2	;	C	523.25hz
+	SOUND 2031, 1	;	D	587.33hz
+	SOUND 2280, 2	;	C	523.25hz
+	SOUND 2031, 1	;	D	587.33hz
+	SOUND 2280, 2	;	C	523.25hz
+	SOUND 2031, 1	;	D	587.33hz
+
 	CLEARSCREEN	_GREEN_		; on nettoie l'écran entièrement à chaque tour
 	FILLSCREEN 1, 1, 38, 23, _BLACK_		; on remplis la zone visuelle
-
-		call menuSimpsonReset		; on donne au simpson la position voulue pour le menu
-		
-		mov PLAYER, 112		; x
-		mov PLAYER+2, 64	; y
-		call DrawPLAYER
-		
-		mov PLAYER, 200		; x
-		mov PLAYER+2, 64	; y
-		call DrawPLAYER
-
-		DrawHomer		_LGREEN_, _GREEN_	
-		DrawMarge		_LGREEN_, _GREEN_	
-		DrawBart		_LGREEN_, _GREEN_	
-		DrawLisa		_LGREEN_, _GREEN_	
-		DrawMaggie		_LGREEN_, _GREEN_	
-		DrawBarney		_LGREEN_, _GREEN_	
-		DrawFlanders	_LGREEN_, _GREEN_	
-		DrawApu			_GREEN_	
-		DrawPetitPapaNoel	_LGREEN_, _GREEN_	
-		DrawBouleDeNeige	_LGREEN_, _GREEN_	
-		DrawKrusty		_LGREEN_, _GREEN_	
-		DrawTahitiBob	_LGREEN_, _GREEN_	
-
-
 
 	SETCURSOR 15, 6
 	stringout S_WIN1		; "Victory in"
@@ -565,6 +557,8 @@ winPanel:
 	PRINTNUM player+4		; affichage nombre de deplacement
 	SETCURSOR 17, 10
 	stringout S_WIN2		; "moves"
+	SETCURSOR 4, 22
+	stringout S_ENTER		; "Press Enter or Space to continue"
 
 	CMP RECORDMOVE, 0					; si le record vaut 0 (set de base)
 	jne CheckRecordLess
@@ -582,17 +576,35 @@ winPanel:
 		mov RECORDMOVE, ax		; on change le record
 
 	winPanelContinue:
-		SETCURSOR 4, 22
-		stringout S_ENTER		; "Press Enter or Space to continue"
 		DELAY 0ffffh
-		SOUND 2280, 2	;	C	523.25hz
-		SOUND 2031, 1	;	D	587.33hz
-		SOUND 2280, 2	;	C	523.25hz
-		SOUND 2031, 1	;	D	587.33hz
-		SOUND 2280, 2	;	C	523.25hz
-		SOUND 2031, 1	;	D	587.33hz
+		FILLSCREEN 8, 3, 31, 5, _BLACK_		; on remplis la zone ou se trouvent des personnages
+		FILLSCREEN 14, 8, 15, 8, _BLACK_		; on remplis la zone ou se trouve un personnage
+		FILLSCREEN 25, 8, 26, 8, _BLACK_		; on remplis la zone ou se trouve un personnage
 
-	winPanelAskConfirm:
+		call menuSimpsonReset		; on donne au simpson la position voulue pour le menu
+		mov PLAYER, 112		; x
+		mov PLAYER+2, 64	; y
+			call DrawPLAYER
+		mov PLAYER, 200		; x
+		mov PLAYER+2, 64	; y
+			call DrawPLAYER
+		DrawHomer		_LGREEN_, _GREEN_	
+		DrawMarge		_LGREEN_, _GREEN_	
+		DrawBart		_LGREEN_, _GREEN_	
+		DrawLisa		_LGREEN_, _GREEN_	
+		DrawMaggie		_LGREEN_, _GREEN_	
+		DrawBarney		_LGREEN_, _GREEN_	
+		DrawFlanders	_LGREEN_, _GREEN_	
+		DrawApu			_GREEN_	
+		DrawPetitPapaNoel	_LGREEN_, _GREEN_	
+		DrawBouleDeNeige	_LGREEN_, _GREEN_	
+		DrawKrusty		_LGREEN_, _GREEN_	
+		DrawTahitiBob	_LGREEN_, _GREEN_	
+
+		mov ah, 01h		; fonction pour verifier si une touche est enfoncée
+		int 16h			; get key press
+		jz winPanelContinue			; s'il n'y a aucune touche, on relance la boucle
+
 		mov ah, 0		; fonction pour recuperer la touche
 		int 16h			; get key press
 
@@ -601,7 +613,7 @@ winPanel:
 		cmp ah, _Kspce_		; if key = ESPACE
 		je gameMenu		; on retourne au menu
 
-	jmp winPanelAskConfirm			; on retourne dans la boucle jusqu'a trouver la bonne touche
+	jmp winPanelContinue			; on retourne dans la boucle jusqu'a trouver la bonne touche
 
 ; ;retour
 	RET
