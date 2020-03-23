@@ -41,30 +41,16 @@ DSEG		SEGMENT
 ; --------------------------
 
 	_BLACK_		EQU 00h
-	_LGRAY_		EQU 07h
+	_DGRAY_		EQU 12h
 	_GRAY_		EQU 08h
-	_WHITE_		EQU 0Fh
-	_DBLUE_		EQU 68h
-	_BLUE_		EQU 37h
+	_DBLUE_		EQU 0DFh
 	_LBLUE_		EQU 35h
 	_GREEN_		EQU 77h
 	_LGREEN_	EQU 02h
-	_CYAN_		EQU 03h
-	_RED_		EQU 04h
-	_MAGENTA_	EQU 05h
 	_BROWN_		EQU 06h
-	_DGRAY_		EQU 12h
-	_LCYAN_		EQU 0Bh
-	_LRED_		EQU 0Ch
-	_LMAGENTA_	EQU 0Dh
-	_DPURPLE_	EQU 6Bh
-	_PURPLE_	EQU 6Ch
-	_LPURPLE_	EQU 24h
-	_PINK_		EQU 41h
-	_DPINK_		EQU 40h
 	_ORANGE_	EQU 2Ah
 	_LORANGE_	EQU 2Bh
-	_YELLOW_	EQU 0Eh
+	_YELLOW_	EQU 2Ch
 
 ; --------------------------
 ; Variables
@@ -136,6 +122,7 @@ CSEG SEGMENT 'CODE'
 ASSUME CS:CSEG, SS:SSEG, DS:DSEG
 %include    lib/avalib.asm
 %include    Sdrawer.asm
+
 %include    function.asm
 ;-------------------------------------------------
 ;MAIN
