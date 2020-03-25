@@ -178,7 +178,7 @@ SETPIX MACRO x, y, color
 
 	mov al, color
 	mov ah, 0ch			; procedure pour pixel
-	mov bh, 1    		; page no - critical while animating
+	mov bh, 0    		; page no - critical while animating
     mov cx, x			; coord x
     mov dx, y			; coord y
 	int 10h 			; interruption correspondante

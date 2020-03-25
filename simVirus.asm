@@ -112,6 +112,7 @@ DSEG		SEGMENT
 	S_WIN2		DB "moves", 24h
 	S_WINRECORD1	DB "You have set your new record!", 24h
 	S_WINRECORD2	DB "You beat your old record!", 24h
+	S_WINRECORD3	DB "Your record remains the same!", 24h
 	S_ENTER		DB "Press Enter or Space to continue", 24h
 
 DSEG		ENDS
@@ -548,8 +549,6 @@ winPanel:
 	PRINTNUM player+4		; affichage nombre de deplacement
 	SETCURSOR 17, 10
 	stringout S_WIN2		; "moves"
-	SETCURSOR 4, 22
-	stringout S_ENTER		; "Press Enter or Space to continue"
 
 	; on place tous les simpson une fois avant le son
 		call menuSimpsonReset		; on donne au simpson la position voulue pour le menu
@@ -579,14 +578,21 @@ winPanel:
 		STRINGOUT S_WINRECORD1		; "You have set your new record !"
 		mov ax, PLAYER+4
 		mov RECORDMOVE, ax		; on change le record
+		jmp winPanelSound
 
 	CheckRecordLess:
 	CMPMEM PLAYER+4, RECORDMOVE		; si le nombre de deplacement est inferieur au record
-	jge winPanelSound
+	jge RecordGreater
 		SETCURSOR 7, 15
 		STRINGOUT S_WINRECORD2	; "You beat your old record!"
 		mov ax, PLAYER+4
 		mov RECORDMOVE, ax		; on change le record
+		jmp winPanelSound
+
+
+	RecordGreater:
+		SETCURSOR 5, 15
+		STRINGOUT S_WINRECORD3		; "Your record remains the same !"
 
 	winPanelSound:
 	; son pour la victoire
@@ -608,6 +614,10 @@ winPanel:
 		SOUND 2031, 1	; D 587.33hz
 			DELAY 0cfffh	; plus longue pause sur le jeu
 		SOUND 1521, 2	; G 783.99hz
+
+		; on affiche le message une fois que le son a fini d'être joué
+		SETCURSOR 4, 22
+		stringout S_ENTER		; "Press Enter or Space to continue"
 
 	winPanelContinue:		; boucle utilisée pour l'animation des simpson jusqu'a avoir une bonne touche pour confirmer
 		DELAY 0ffffh
