@@ -252,7 +252,7 @@ RAND MACRO target
 	push dx		;
 
 	mov ah, 00h		; recuperation du temps du jeu       
-	int 1Ah			; CX:DX contient maintenant le temps depuis minuit
+	int 1Ah			; CX:DX contient maintenant le temps
 
 	mov  ax, dx		; deplacement de dx dans ax
 	mov dx, 0		; reset la valeur de dx
