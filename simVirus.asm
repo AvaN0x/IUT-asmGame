@@ -121,7 +121,6 @@ CSEG SEGMENT 'CODE'
 ASSUME CS:CSEG, SS:SSEG, DS:DSEG
 %include    lib/avalib.asm
 %include    Sdrawer.asm
-
 %include    function.asm
 ;-------------------------------------------------
 ;MAIN
