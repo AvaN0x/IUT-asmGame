@@ -78,7 +78,7 @@ DSEG		SEGMENT
 	timerMov	DB	0		; variable servant de boucle pour les déplacements des simpson (tous les 5 refreshs de fenêtre)
 
 	gamePosSick	DW	4		; variable pour la position des simpsons en bas a gauche de l'écran
-
+ 
 ; --------------------------
 ; Texts
 ; --------------------------
@@ -362,6 +362,27 @@ gameMain:
 		afterIncTimerMov:
 		
 		call CHECKWIN
+
+		; --------------------------
+		; affichage des zones de déplacement des simpsons
+		; --------------------------
+		;		FILLSCREEN 1, 2, 12, 6, 013h			; homer
+		;		FILLSCREEN 1, 7, 12, 11, 015h			; barney
+		;		FILLSCREEN 1, 13, 12, 17, 017h			; apu
+		;		FILLSCREEN 1, 18, 12, 22, 01ah			; tahitibob
+		;
+		;		FILLSCREEN 13, 2, 19, 11, 014h			; maggie
+		;		FILLSCREEN 13, 13, 19, 22, 018h			; pppnoel
+		;
+		;		FILLSCREEN 20, 2, 26, 11, 011h			; marge
+		;		FILLSCREEN 20, 13, 26, 22, 016h			; flanders
+		;
+		;		FILLSCREEN 27, 2, 38, 6, 015h			; lisa
+		;		FILLSCREEN 27, 7, 38, 11, 013h			; krusty
+		;		FILLSCREEN 27, 13, 38, 17, 01ah			; bart
+		;		FILLSCREEN 27, 18, 38, 22, 017h			; bdneige
+		; --------------------------
+
 
 		; dessin des simpsons
 		HomerCheckSick:				; verification de l'état d'Homer
