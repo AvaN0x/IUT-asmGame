@@ -4,9 +4,8 @@
 ; _\ \ | | | | | | |_) \__ \ (_) | | | | (_) \ V /| | |  | |_| \__ \
 ; \__/_|_| |_| |_| .__/|___/\___/|_| |_|\___/ \_/ |_|_|   \__,_|___/
 ;                |_|                                                
-; By Clément RICATTE & Valentin Azancoth
+; By Clément RICATTE
 ; -> github.com/AvaN0x
-; -> github.com/Valaaz
 
 drawPLAYER:
 	mov cx, PLAYER

@@ -4,9 +4,8 @@
 ; _\ \ | | | | | | |_) \__ \ (_) | | | | (_) \ V /| | |  | |_| \__ \
 ; \__/_|_| |_| |_| .__/|___/\___/|_| |_|\___/ \_/ |_|_|   \__,_|___/
 ;                |_|                                                
-; By Clément RICATTE & Valentin Azancoth
+; By Clément RICATTE
 ; -> github.com/AvaN0x
-; -> github.com/Valaaz
 
 ;-------------------------------------------------
 	TITLE DISPLAY - SimpsonoVirus
@@ -90,7 +89,6 @@ DSEG		SEGMENT
 	S_MENU4		DB "Quit", 24h
 
 	S_CREDIT	DB "By github.com/AvaN0x", 24h
-	S_CREDIT2	DB "and github.com/Valaaz", 24h
 
 	; helpPanel
 
@@ -153,10 +151,8 @@ gameMenu:
 	STRINGOUT S_MENU3			; "Help"
 	SETCURSOR 18, 16
 	STRINGOUT S_MENU4			; "Quit"
-	SETCURSOR 18, 21
-	STRINGOUT S_CREDIT			; "By github.com/AvaN0x"
 	SETCURSOR 17, 22
-	STRINGOUT S_CREDIT2			; "and github.com/Valaaz"
+	STRINGOUT S_CREDIT			; "By github.com/AvaN0x"
 
 	cmp MENUSTATE, 0
 	je playerPosPlay
@@ -617,22 +613,22 @@ winPanel:
 	winPanelSound:
 	; son pour la victoire
 		SOUND 4063, 1	; D 293.66hz
-			DELAY 0cfffh	; plus longue pause sur le jeu
+			DELAY 0cfffh	; pause de la longueur d'une note
 		SOUND 3043, 1	; G 391hz
 		SOUND 3043, 1	; G 391hz
 		SOUND 3043, 1	; G 391hz
-			DELAY 0cfffh	; plus longue pause sur le jeu
+			DELAY 0cfffh	; pause de la longueur d'une note
 		SOUND 4063, 1	; D 293.66hz
 		SOUND 3043, 1	; G 391hz
 		SOUND 2415, 1	; B 493.88hz
-			DELAY 0cfffh	; plus longue pause sur le jeu
+			DELAY 0cfffh	; pause de la longueur d'une note
 		SOUND 4063, 1	; D 293.66hz
 		SOUND 3043, 1	; G 391hz
 		SOUND 2031, 2	; D 587.33hz
-			DELAY 0cfffh	; plus longue pause sur le jeu
+			DELAY 0cfffh	; pause de la longueur d'une note
 		SOUND 2415, 1	; B 493.88hz
 		SOUND 2031, 1	; D 587.33hz
-			DELAY 0cfffh	; plus longue pause sur le jeu
+			DELAY 0cfffh	; pause de la longueur d'une note
 		SOUND 1521, 2	; G 783.99hz
 
 		; on affiche le message une fois que le son a fini d'être joué

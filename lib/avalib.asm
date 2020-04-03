@@ -83,17 +83,17 @@ PRINTNUM MACRO num
 
 	mov ax, num		; deplace le nombre dans le registre
 	
-	mov cx, 0 
+	mov cx, 0 		; cx compte le nombre de chiffres à afficher
     mov dx, 0 
 
-	cmp ax, 0		; if ax is zero 
-	jne load    
-	INC cx
+	cmp ax, 0		; si ax n'est pas a 0
+	jne load    	; on peut entrer dans la boucle
+	INC cx			; sinon on augmente le nombre de chiffre
 	push ax
 
     load: 
-		cmp ax, 0		; if ax is zero 
-		je print       
+		cmp ax, 0		; si ax est égale à 0
+		je print       	; on l'écrit
 		mov bx, 10		; initilise bx a 10       
 		div bx			; extrait le dernier chiffre
 		push dx			; push le chiffre
@@ -274,13 +274,13 @@ SOUND MACRO frequency, duration
 	push cx		;
 	push dx		;
 
-		mov al, 182			; On prepare les hauts-parleurs pour
+		mov al, 182			; On prepare les haut-parleurs pour
 		out 43h, al			; la note
 		mov ax, frequency	; Frequency number (en decimal)
 
-		out 42h, al         ; Output low byte
+		out 42h, al         ; sortie du bit de poids faible au port 42h
 		mov al, ah          
-		out 42h, al			; Output high byte
+		out 42h, al			; sortie du bit de poids fort au port 42h
 
 		; pour faire un son, on doit set les bits 0 et 1 du port 61h à 1
 		mov al, 61h			; on récupère la valeur du port
