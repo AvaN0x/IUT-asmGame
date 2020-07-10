@@ -15,6 +15,8 @@ Pour lancer le jeu, il faut donc :
 * se déplacez dans le bon répertoire
 * écrire le nom du fichier à éxécuter.
 
+Ce qui donne dans DOSBox : 
+
 ```console
 > MOUNT c [path to folder]
 > c:
