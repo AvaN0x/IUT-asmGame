@@ -7,9 +7,13 @@ Jeu crée en projet pour l'IUT en Assembly pour Intel 8086
 
 ## Utilisation
 
-Pour l'éxécuter, j'ai personnellement utilisé [DOSBox](https://www.dosbox.com/), un émulateur x86.
+Nous avons utilisé [DOSBox](https://www.dosbox.com/) comme émulateur x86 pour faire ce projet.
 
-Pour ce faire, lancez DOSBox, déplacez vous dans le bon répertoire et écrire le nom du fichier à éxécuter.
+Pour lancer le jeu, il faut donc :
+
+* lancez DOSBox
+* se déplacez dans le bon répertoire
+* écrire le nom du fichier à éxécuter.
 
 ```console
 > MOUNT c [path to folder]
