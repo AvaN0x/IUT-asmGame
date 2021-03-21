@@ -23,8 +23,6 @@ Ce qui donne dans DOSBox :
 > SIMVIRUS.EXE
 ```
 
-## Informations
-Plus d'informations disponibles sur mon site <https://avan0x.github.io/etudes/iut/projetAsm.html>
 
 ![Repo Size](https://img.shields.io/github/repo-size/avan0x/IUT-asmGame?logo=github)
 ![License](https://img.shields.io/github/license/avan0x/IUT-asmGame?logo=github)
